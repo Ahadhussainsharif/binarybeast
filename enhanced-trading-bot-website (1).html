@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revolutionize your trading with our Auto Trading Bot. Start trading today and make profitable, automated trades with ease.">
+    <title>Auto Trading Bot - Start Trading Now</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #222, #444);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 100;
+        }
+
+        header img {
+            max-width: 120px;
+            border-radius: 50%;
+            border: 3px solid #25D366;
+            transition: transform 0.3s ease;
+        }
+        
+        header img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.7);
+        }
+
+        /* Heartbeat Animation for CTA Button */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Dollar Rain Animation */
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .dollar {
+            position: fixed;
+            top: -50px;
+            color: #85bb65;
+            font-size: 24px;
+            pointer-events: none;
+            animation: falling linear infinite;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: heartbeat 1.5s infinite;
+            width: auto;
+            max-width: none;
+        }
+
+        .cta-button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #128C7E, #25D366);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.7);
+        }
+
+        .cta-button:hover:before {
+            left: 100%;
+        }
+
+        .main-banner {
+            background: linear-gradient(135deg, #f9c74f, #f3722c);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-banner h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease;
+            color: #333;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-banner p {
+            font-size: 1.4em;
+            color: #444;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Improved Countdown Styles */
+        .countdown-container {
+            text-align: center;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            padding: 25px;
+            color: white;
+            border-radius: 20px;
+            display: block;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: perspective(1000px) rotateX(5deg);
+        }
+
+        .countdown-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.05) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.05) 75%, 
+                transparent 75%);
+            background-size: 4px 4px;
+            border-radius: 20px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .countdown-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-title {
+            font-size: 1.2em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #25D366;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .countdown-item {
+            background: #111;
+            padding: 15px 0;
+            border-radius: 10px;
+            width: 80px;
+            margin: 0 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 
+                        inset 0 2px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+        }
+
+        .countdown-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #ff5733;
+            line-height: 1;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .countdown-separator {
+            font-size: 2em;
+            font-weight: 700;
+            color: #ff5733;
+            line-height: 2.5;
+        }
+
+        .trial-message {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 15px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        .section {
+            margin: 60px 0;
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            border-radius: 2px;
+        }
+
+        .features-grid, .how-it-works-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-item, .step-item, .testimonial-item {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .feature-item:before, .step-item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #25D366, #128C7E);
+        }
+
+        .feature-item:hover, .step-item:hover, .testimonial-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item i, .step-item i {
+            font-size: 2.5em;
+            color: #25D366;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-item h3, .step-item h3, .testimonial-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .testimonial-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            text-align: left;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .testimonial-item p {
+            font-style: italic;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .testimonial-item p:before, .testimonial-item p:after {
+            content: '"';
+            font-size: 2em;
+            color: #25D366;
+            position: absolute;
+        }
+
+        .testimonial-item p:before {
+            left: 0;
+            top: -10px;
+        }
+
+        .testimonial-item p:after {
+            right: 0;
+            bottom: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            transition: 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-question:after {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #222, #444);
+            color: #fff;
+            text-align: center;
+            padding: 40px 0 20px;
+            position: relative;
+        }
+
+        footer:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: #25D366;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #25D366;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #25D366;
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            padding: 15px;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            text-align: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-button a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        /* Improved Responsive Styles */
+        @media (min-width: 768px) {
+            .features-grid, .how-it-works-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .features-grid, .how-it-works-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .main-banner h1 {
+                font-size: 3em;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .main-banner h1 {
+                font-size: 2em;
+            }
+
+            .main-banner p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .countdown-item {
+                width: 65px;
+                padding: 10px 0;
+            }
+            
+            .countdown-number {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-banner {
+                padding: 40px 15px;
+            }
+
+            .main-banner h1 {
+                font-size: 1.6em;
+            }
+
+            .main-banner p {
+                font-size: 1em;
+            }
+            
+            .countdown-container {
+                padding: 20px 15px;
+            }
+            
+            .countdown-item {
+                width: 55px;
+                margin: 0 3px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5em;
+            }
+            
+            .countdown-separator {
+                font-size: 1.5em;
+            }
+
+            .trial-message {
+                font-size: 1.2em;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+
+            .section {
+                margin: 40px 0;
+            }
+
+            .feature-item i, .step-item i {
+                font-size: 2.2em;
+            }
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://i.ibb.co/mCcC3Kn/WBot-Logo.png" alt="Auto Trading Bot Logo">
+</header>
+
+<div class="main-banner">
+    <h1>Revolutionize Your Trading with Our Auto Trading Bot</h1>
+    <p>Automated, Profitable, and Effortless Trading at Your Fingertips</p>
+    <a href="https://chat.whatsapp.com/FKCn6m4yCmtK6CIllLzXIC" class="cta-button">
+        <i class="fas fa-robot"></i> Start Trading Now
+    </a>
+</div>
+
+<!-- Improved Countdown Timer Section -->
+<div class="countdown-container">
+    <div class="countdown-content">
+        <div class="countdown-title">Limited Time Offer</div>
+        <div class="countdown">
+            <div class="countdown-item">
+                <div id="countdown-minutes" class="countdown-number">30</div>
+                <div class="countdown-label">Min</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <div id="countdown-seconds" class="countdown-number">00</div>
+                <div class="countdown-label">Sec</div>
+            </div>
+        </div>
+        <p class="trial-message" id="trialMessage">Get Binary Beast Trial Now!</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section features">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <h3>24/7 Trading</h3>
+                <p>Our bot works around the clock to make profitable trades for you, even while you sleep.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-chart-line"></i>
+                <h3>High Accuracy</h3>
+                <p>With advanced algorithms and AI technology, we ensure highly accurate trades with minimal risk.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-user-shield"></i>
+                <h3>User-Friendly</h3>
+                <p>No technical experience needed! Our intuitive platform makes trading accessible to everyone.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <div class="how-it-works-grid">
+            <div class="step-item">
+                <i class="fas fa-user-plus"></i>
+                <h3>Step 1: Sign Up</h3>
+                <p>Register on our platform with a few simple details and connect your trading account.</p>
+            </div>
+            <div class="step-item">
+                <i class="fas fa-sliders-h"></i>
+                <h3>Step 2: Set Preferences</h3>
+                <p>Choose your trading preferences, risk level, and set the bot to trade according to your strategy.</p>
+            </div>
+            <div class="step-item">
+                <i class="fas fa-coins"></i>
+                <h3>Step 3: Start Earning</h3>
+                <p>Let the bot trade for you while you sit back and watch your profits grow!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section testimonials">
+        <h2 class="section-title">User Testimonials</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-item">
+                <p>"This bot has completely changed my trading strategy. It's easy to use and I'm seeing great results consistently!"</p>
+                <div class="testimonial-author">
+                    <img src="/api/placeholder/50/50" alt="John Doe">
+                    <div>
+                        <h3>John Doe</h3>
+                        <p>Active Trader</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <p>"I love how this bot works automatically, it saves me a ton of time and the returns have been impressive!"</p>
+                <div class="testimonial-author">
+                    <img src="/api/placeholder/50/50" alt="Jane Smith">
+                    <div>
+                        <h3>Jane Smith</h3>
+                        <p>New Investor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">How does the bot work?</div>
+            <div class="faq-answer">
+                <p>The bot uses advanced machine learning algorithms to analyze market trends, historical data, and real-time indicators to execute profitable trades. It continuously learns and adapts to market conditions to optimize performance.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is it safe to use?</div>
+            <div class="faq-answer">
+                <p>Yes, our platform is highly secure with end-to-end encryption and advanced security protocols. We ensure your data privacy is protected and never share your information with third parties.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How much can I earn?</div>
+            <div class="faq-answer">
+                <p>Returns vary based on market conditions, trading strategy, and investment amount. Our users typically report 15-30% monthly returns, but results are not guaranteed and trading always involves risk.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>Auto Trading Bot is a cutting-edge platform designed to help traders maximize profits through automated trading strategies.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Testimonials</a>
+            <a href="#">FAQ</a>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p><i class="fas fa-envelope"></i> ahadhussainsharif@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +923035615595</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 Auto Trading Bot. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<div class="whatsapp-button">
+    <a href="https://chat.whatsapp.com/FKCn6m4yCmtK6CIllLzXIC"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<!-- Dollar Rain Effect and Improved Countdown Timer Script -->
+<script>
+    // Countdown Timer with improved display
+    var countdownDate = new Date().getTime() + 30 * 60 * 1000; // Set the countdown to 30 minutes from now
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countdownDate - now;
+
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Format to always show two digits
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        document.getElementById("countdown-minutes").innerHTML = minutes;
+        document.getElementById("countdown-seconds").innerHTML = seconds;
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown-minutes").innerHTML = "00";
+            document.getElementById("countdown-seconds").innerHTML = "00";
+            document.getElementById("trialMessage").innerHTML = "Trial Offer Expired!";
+        }
+    }, 1000);
+
+    // Dollar Rain Effect
+    function createDollar() {
+        const dollar = document.createElement('div');
+        dollar.innerHTML = '$';
+        dollar.classList.add('dollar');
+        dollar.style.left = Math.random() * 100 + 'vw';
+        dollar.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(dollar);
+
+        setTimeout(() => {
+            dollar.remove();
+        }, 5000);
+    }
+
+    // Create dollars at random intervals
+    setInterval(createDollar, 300);
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', event => {
+            const parent = event.target.closest('.faq-item');
+            parent.classList.toggle('active');
+        });
+    });
+    
+    // Check if page is loaded on mobile
+    function checkMobile() {
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        if (viewportWidth <= 768) {
+            // Adjust spacing for mobile
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.margin = "30px 0";
+            });
+        }
+    }
+    
+    // Run on page load and window resize
+    window.addEventListener('load', checkMobile);
+    window.addEventListener('resize', checkMobile);
+</script>
+
+</body>
+</html>
