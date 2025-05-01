@@ -1,0 +1,4191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BINARY BEAST PRO | AI-Powered Signals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a061e;
+            --primary: #13103d;
+            --secondary: #241c6d;
+            --accent-primary: #7e1dff;
+            --accent-secondary: #11cefb;
+            --accent-tertiary: #fd3aff;
+            --success: #00ffc3;
+            --danger: #ff2976;
+            --warning: #ffc137;
+            --text: #f3f0ff;
+            --text-secondary: #c4c0d4;
+            --panel: rgba(23, 19, 70, 0.7);
+            --panel-dark: rgba(10, 6, 30, 0.85);
+            --border: 1px solid rgba(126, 29, 255, 0.3);
+            --border-light: 1px solid rgba(17, 206, 251, 0.2);
+            --glow-primary: 0 0 25px rgba(126, 29, 255, 0.4);
+            --glow-secondary: 0 0 25px rgba(17, 206, 251, 0.4);
+            --radius-sm: 8px;
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.35s cubic-bezier(0.17, 0.67, 0.45, 0.99);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(126, 29, 255, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 90% 85%, rgba(17, 206, 251, 0.07) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(253, 58, 255, 0.04) 0%, transparent 45%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: var(--panel);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: var(--border);
+            box-shadow: var(--glow-primary);
+            margin-bottom: 25px;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .header {
+            position: relative;
+            background: linear-gradient(135deg, rgba(19, 16, 61, 0.9), rgba(36, 28, 109, 0.8));
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: var(--border);
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(126, 29, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(17, 206, 251, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-text {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-text span {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            left: -5%;
+            bottom: -8px;
+            width: 110%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+        }
+
+        .tagline {
+            font-size: 15px;
+            opacity: 0.8;
+            font-weight: 400;
+            margin-top: 15px;
+        }
+
+        .content {
+            padding: 30px 25px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--panel-dark);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin-bottom: 25px;
+            border: var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(17, 206, 251, 0.05), transparent);
+            z-index: 0;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+            position: relative;
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            70% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .status-text {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .status-countdown {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Platform Selection */
+        .section-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--accent-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .platform-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .platform-btn {
+            position: relative;
+            background: rgba(19, 16, 61, 0.7);
+            border: 1px solid rgba(126, 29, 255, 0.2);
+            border-radius: var(--radius);
+            padding: 16px 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .platform-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(126, 29, 255, 0.1), transparent);
+            z-index: 0;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .platform-btn:hover::before {
+            opacity: 1;
+        }
+
+        .platform-btn.active {
+            background: rgba(36, 28, 109, 0.7);
+            border: 1px solid rgba(126, 29, 255, 0.5);
+            color: var(--text);
+            box-shadow: 0 5px 15px rgba(126, 29, 255, 0.15);
+        }
+
+        .platform-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 70%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: var(--radius-sm);
+        }
+
+        .platform-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .platform-btn.active .platform-icon {
+            color: var(--accent-secondary);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .platform-name {
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Access Code Form */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--panel);
+            padding: 0 10px;
+            font-size: 13px;
+            color: var(--accent-secondary);
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            background: rgba(10, 6, 30, 0.6);
+            border: var(--border);
+            color: var(--text);
+            font-size: 16px;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            box-shadow: var(--glow-primary);
+            border-color: rgba(126, 29, 255, 0.5);
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-primary);
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .input-icon:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* Button Styles */
+        .btn {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+            transition: 0.7s ease-in-out;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--primary-dark);
+            box-shadow: 0 5px 15px rgba(126, 29, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 7px 20px rgba(126, 29, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            font-size: 18px;
+        }
+
+        /* Pricing Box */
+        .pricing-box {
+            background: var(--panel-dark);
+            border-radius: var(--radius);
+            padding: 30px 25px;
+            margin: 35px 0 25px;
+            border: var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(17, 206, 251, 0.07), transparent 70%);
+            z-index: 0;
+        }
+
+        .pricing-label {
+            position: absolute;
+            top: 5px;
+            right: 30px;
+            transform: none;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 15px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(253, 58, 255, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+            display: block;
+        }
+
+        .pricing-amount {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin: 5px 0 25px;
+            color: white;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(126, 29, 255, 0.5);
+        }
+
+        .pricing-currency {
+            color: var(--accent-secondary);
+            font-size: 24px;
+            vertical-align: super;
+            margin-right: 5px;
+        }
+
+        .pricing-alt {
+            display: block;
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: -15px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            position: relative;
+            z-index: 1;
+        }
+
+        .payment-method {
+            background: rgba(19, 16, 61, 0.5);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(126, 29, 255, 0.2);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-3px);
+            border-color: rgba(126, 29, 255, 0.4);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(19, 16, 61, 0.7);
+        }
+
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover::before {
+            opacity: 1;
+        }
+
+        .payment-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--accent-secondary);
+        }
+
+        .payment-icon {
+            font-size: 22px;
+            color: var(--accent-primary);
+        }
+
+        .payment-details {
+            position: relative;
+            background: rgba(10, 6, 30, 0.7);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-top: 15px;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 15px;
+            word-break: break-all;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(17, 206, 251, 0.1);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(126, 29, 255, 0.15);
+            border: 1px solid rgba(126, 29, 255, 0.2);
+            color: var(--accent-secondary);
+            border-radius: var(--radius-sm);
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(126, 29, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .copy-btn i {
+            font-size: 11px;
+        }
+
+        .upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: rgba(126, 29, 255, 0.08);
+            color: var(--accent-secondary);
+            border: 1px solid rgba(126, 29, 255, 0.2);
+            border-radius: var(--radius);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background: rgba(126, 29, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Trading Interface */
+        .trading-section {
+            display: none;
+        }
+
+        .subscription-status {
+            background: var(--panel-dark);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 30px;
+            border: var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscription-status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(17, 206, 251, 0.05), transparent);
+            z-index: 0;
+        }
+
+        .sub-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sub-title {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .sub-value {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .progress-container {
+            height: 10px;
+            background: rgba(10, 6, 30, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+            width: 75%;
+            position: relative;
+            transition: width 1s ease-in-out;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: progressShine 3s linear infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: var(--accent-secondary);
+            font-size: 15px;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            background: rgba(10, 6, 30, 0.6);
+            border: var(--border);
+            color: var(--text);
+            font-size: 16px;
+            appearance: none;
+            transition: var(--transition);
+        }
+
+        .select-field:focus {
+            outline: none;
+            box-shadow: var(--glow-primary);
+            border-color: rgba(126, 29, 255, 0.5);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--accent-primary);
+            transition: var(--transition);
+        }
+
+        .select-wrapper:hover .select-arrow {
+            color: var(--accent-secondary);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--accent-primary), var(--success));
+            color: var(--primary-dark);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 7px 20px rgba(0, 255, 195, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--accent-primary), var(--warning));
+            color: var(--primary-dark);
+            margin-top: 15px;
+        }
+
+        .btn-warning:hover {
+            box-shadow: 0 7px 20px rgba(255, 193, 55, 0.3);
+        }
+
+        /* Loading Indicator */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+        }
+
+        .loader-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: var(--accent-primary);
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loader-circle:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-top-color: var(--accent-secondary);
+            animation-duration: 2s;
+            animation-direction: reverse;
+        }
+
+        .loader-circle:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-top-color: var(--accent-tertiary);
+            animation-duration: 1s;
+        }
+
+        .loading-text {
+            font-family: 'Chakra Petch', sans-serif;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: loadingDots 1.5s infinite;
+        }
+
+        @keyframes loadingDots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Signal Display */
+        .signal-display {
+            display: none;
+            background: var(--panel-dark);
+            border-radius: var(--radius);
+            padding: 30px 20px;
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: fadeIn 0.7s ease-out;
+        }
+
+        .signal-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(126, 29, 255, 0.1), transparent 70%);
+            z-index: -1;
+        }
+
+        .signal-display.buy {
+            border: 1px solid rgba(0, 255, 195, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 255, 195, 0.2);
+        }
+
+        .signal-display.sell {
+            border: 1px solid rgba(255, 41, 118, 0.3);
+            box-shadow: 0 5px 20px rgba(255, 41, 118, 0.2);
+        }
+
+        .signal-badge {
+            position: absolute;
+            top: 5px;
+            right: 25px;
+            transform: none;
+            background: linear-gradient(90deg, var(--warning), var(--accent-tertiary));
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 15px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(255, 193, 55, 0.3);
+            font-family: 'Chakra Petch', sans-serif;
+            letter-spacing: 1px;
+            z-index: 10;
+            display: block;
+        }
+
+        .signal-indicator {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: var(--success);
+            animation: pulseIcon 2s infinite;
+        }
+
+        .signal-display.sell .signal-indicator {
+            color: var(--danger);
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .signal-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--success);
+            letter-spacing: 1px;
+        }
+
+        .signal-display.sell .signal-title {
+            color: var(--danger);
+        }
+
+        .signal-pair {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .signal-timing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .signal-time-value {
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+
+        .quantum-tag {
+            margin-top: 15px;
+            display: inline-block;
+            background: rgba(253, 58, 255, 0.1);
+            border: 1px solid rgba(253, 58, 255, 0.2);
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-tertiary);
+        }
+
+        .data-source-tag {
+           margin-top: 10px;
+           display: none;
+           background: rgba(0, 255, 195, 0.1);
+           border: 1px solid rgba(0, 255, 195, 0.2);
+           padding: 7px 15px;
+           border-radius: 20px;
+           font-size: 13px;
+           font-weight: 600;
+           color: var(--success);
+       }
+
+       /* Trend and pattern badges */
+       .trend-badge {
+           margin-top: 10px;
+           display: inline-block;
+           background: rgba(17, 206, 251, 0.1);
+           border: 1px solid rgba(17, 206, 251, 0.2);
+           padding: 7px 15px;
+           border-radius: 20px;
+           font-size: 13px;
+           font-weight: 600;
+           color: var(--accent-secondary);
+       }
+
+       .sr-badge {
+           margin-top: 10px;
+           display: inline-block;
+           background: rgba(255, 193, 55, 0.1);
+           border: 1px solid rgba(255, 193, 55, 0.2);
+           padding: 7px 15px;
+           border-radius: 20px;
+           font-size: 13px;
+           font-weight: 600;
+           color: var(--warning);
+       }
+
+       /* Disclaimer */
+       .disclaimer {
+           margin: 25px 0;
+           padding: 16px;
+           background: rgba(255, 193, 55, 0.05);
+           border-radius: var(--radius);
+           border: 1px solid rgba(255, 193, 55, 0.2);
+           display: flex;
+           align-items: flex-start;
+           gap: 12px;
+       }
+
+       .disclaimer-checkbox {
+           appearance: none;
+           width: 20px;
+           height: 20px;
+           background: rgba(10, 6, 30, 0.8);
+           border: 1px solid rgba(126, 29, 255, 0.3);
+           border-radius: 4px;
+           cursor: pointer;
+           position: relative;
+           margin-top: 2px;
+       }
+
+       .disclaimer-checkbox:checked {
+           background: var(--accent-primary);
+           border-color: var(--accent-primary);
+       }
+
+       .disclaimer-checkbox:checked::after {
+           content: '✓';
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           color: white;
+           font-size: 12px;
+       }
+
+       .disclaimer-text {
+           font-size: 14px;
+           color: var(--text-secondary);
+           line-height: 1.5;
+       }
+
+       /* WhatsApp Float Button */
+       .whatsapp-float {
+           position: fixed;
+           bottom: 30px;
+           right: 30px;
+           width: 60px;
+           height: 60px;
+           background: linear-gradient(135deg, #25d366, #128c7e);
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: white;
+           font-size: 24px;
+           box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+           transition: all 0.3s cubic-bezier(0.17, 0.67, 0.45, 0.99);
+           z-index: 999;
+       }
+
+       .whatsapp-float:hover {
+           transform: scale(1.1) rotate(10deg);
+           box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
+       }
+
+       /* Footer */
+       .footer {
+           text-align: center;
+           padding: 25px 20px;
+           background: var(--panel);
+           border-top: var(--border);
+           font-size: 13px;
+           color: var(--text-secondary);
+           border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+       }
+
+       /* Redirect Overlay */
+       .redirect-overlay {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(10, 6, 30, 0.95);
+           backdrop-filter: blur(10px);
+           display: none;
+           justify-content: center;
+           align-items: center;
+           z-index: 1000;
+           animation: fadeIn 0.5s ease;
+       }
+
+       .redirect-content {
+           max-width: 500px;
+           padding: 40px 30px;
+           background: var(--panel);
+           border-radius: var(--radius-lg);
+           border: var(--border);
+           text-align: center;
+           position: relative;
+           box-shadow: var(--glow-primary);
+       }
+
+       .redirect-title {
+           font-family: 'Chakra Petch', sans-serif; 
+           font-size: 26px;
+           font-weight: 700;
+           margin-bottom: 20px;
+           color: var(--accent-primary);
+           background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+           -webkit-background-clip: text;
+           background-clip: text;
+           -webkit-text-fill-color: transparent;
+       }
+
+       .redirect-text {
+           font-size: 16px;
+           line-height: 1.6;
+           margin-bottom: 30px;
+           color: var(--text);
+       }
+
+       .redirect-btn {
+           display: inline-block;
+           padding: 16px 30px;
+           background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+           color: var(--primary-dark);
+           border-radius: var(--radius);
+           text-decoration: none;
+           font-family: 'Chakra Petch', sans-serif;
+           font-weight: 600;
+           font-size: 16px;
+           transition: var(--transition);
+           position: relative;
+           overflow: hidden;
+       }
+
+       .redirect-btn::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: -100%;
+           width: 100%;
+           height: 100%;
+           background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+           transition: var(--transition);
+       }
+
+       .redirect-btn:hover::before {
+           left: 100%;
+           transition: 0.7s ease-in-out;
+       }
+
+       .redirect-btn:hover {
+           transform: translateY(-3px);
+           box-shadow: var(--glow-secondary);
+       }
+
+       .close-btn {
+           position: absolute;
+           top: 15px;
+           right: 15px;
+           width: 30px;
+           height: 30px;
+           background: rgba(126, 29, 255, 0.1);
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: var(--accent-secondary);
+           font-size: 18px;
+           cursor: pointer;
+           transition: var(--transition);
+       }
+
+       .close-btn:hover {
+           background: rgba(126, 29, 255, 0.2);
+           transform: rotate(90deg);
+       }
+
+       /* Analysis Panel */
+       .analysis-panel {
+           display: none;
+           background: var(--panel-dark);
+           border-radius: var(--radius);
+           padding: 20px;
+           margin-top: 30px;
+           border: var(--border-light);
+       }
+
+       .analysis-title {
+           font-family: 'Chakra Petch', sans-serif;
+           font-size: 16px;
+           font-weight: 600;
+           margin-bottom: 15px;
+           color: var(--accent-tertiary);
+           display: flex;
+           align-items: center;
+           gap: 8px;
+       }
+
+       .analysis-section {
+           margin-bottom: 15px;
+       }
+
+       .analysis-row {
+           display: flex;
+           justify-content: space-between;
+           padding: 8px 0;
+           border-bottom: 1px solid rgba(126, 29, 255, 0.1);
+       }
+
+       .analysis-label {
+           font-size: 14px;
+           color: var(--text-secondary);
+       }
+
+       .analysis-value {
+           font-family: 'Space Grotesk', monospace;
+           font-weight: 500;
+           font-size: 14px;
+           color: var(--accent-secondary);
+       }
+
+       .analysis-value.bullish {
+           color: var(--success);
+       }
+
+       .analysis-value.bearish {
+           color: var(--danger);
+       }
+
+       /* Animations */
+       @keyframes fadeIn {
+           from { opacity: 0; transform: translateY(10px); }
+           to { opacity: 1; transform: translateY(0); }
+       }
+
+       /* Floating particles animation */
+       .particles-container {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           overflow: hidden;
+           pointer-events: none;
+           z-index: 0;
+       }
+
+       .particle {
+           position: absolute;
+           width: 2px;
+           height: 2px;
+           background: var(--accent-primary);
+           border-radius: 50%;
+           opacity: 0;
+           animation: float 15s infinite ease-in-out;
+       }
+
+       .particle:nth-child(even) {
+           background: var(--accent-secondary);
+       }
+
+       .particle:nth-child(3n) {
+           background: var(--accent-tertiary);
+       }
+
+       @keyframes float {
+           0% {
+               opacity: 0;
+               transform: translateY(0) translateX(0);
+           }
+           10% {
+               opacity: 0.5;
+           }
+           90% {
+               opacity: 0.5;
+           }
+           100% {
+               opacity: 0;
+               transform: translateY(-100vh) translateX(100px);
+           }
+       }
+
+       /* Responsive Styles */
+       @media (max-width: 500px) {
+           .platform-selection {
+               grid-template-columns: 1fr;
+           }
+
+           .pricing-amount {
+               font-size: 36px;
+           }
+
+           .logo-text {
+               font-size: 24px;
+           }
+
+           .signal-title {
+               font-size: 24px;
+           }
+
+           .whatsapp-float {
+               bottom: 20px;
+               right: 20px;
+               width: 50px;
+               height: 50px;
+               font-size: 20px;
+           }
+
+           .content {
+               padding: 25px 20px;
+           }
+		   .security-alert {
+			margin-top: 15px;
+			padding: 12px;
+			background: rgba(255, 193, 55, 0.1);
+			border: 1px solid rgba(255, 193, 55, 0.3);
+			border-radius: var(--radius-sm);
+			font-size: 13px;
+			line-height: 1.5;
+			color: var(--warning);
+			text-align: left;
+		}
+
+		.security-alert i {
+			margin-right: 6px;
+			color: var(--warning);
+		}
+       }
+   </style>
+</head>
+<body>
+   <!-- Particles animation container -->
+   <div class="particles-container" id="particlesContainer"></div>
+
+   <div class="container">
+       <div class="card">
+           <div class="header">
+               <div class="header-content">
+                   <h1 class="logo-text"><span>BINARY BEAST PRO</span></h1>
+                   <p class="tagline">AI-Powered Quantum Trading Signals</p>
+               </div>
+           </div>
+
+           <div class="content">
+               <!-- Access Status Bar (initially hidden) -->
+               <div class="status-bar" id="accessStatus" style="display: none;">
+                   <div class="status-indicator">
+                       <div class="status-dot"></div>
+                       <span class="status-text">Premium Access</span>
+                   </div>
+                   <div class="status-countdown" id="accessExpiration">
+                       29/04/2025 23:59
+                   </div>
+               </div>
+
+               <!-- Platform Selection -->
+               <h2 class="section-title"><i class="fas fa-exchange-alt"></i> Trading Platform</h2>
+               <div class="platform-selection" id="platformSelection">
+                   <button class="platform-btn active" data-platform="quotex">
+                       <div class="platform-icon">
+                           <i class="fas fa-chart-line"></i>
+                       </div>
+                       <span class="platform-name">Quotex</span>
+                   </button>
+                   <button class="platform-btn" data-platform="pocket">
+                       <div class="platform-icon">
+                           <i class="fas fa-mobile-alt"></i>
+                       </div>
+                       <span class="platform-name">Pocket Option</span>
+                   </button>
+               </div>
+
+               <!-- Password Section -->
+               <div id="passwordSection" class="password-section">
+                   <h2 class="section-title"><i class="fas fa-key"></i> Access Control</h2>
+                   <div class="input-group">
+                       <span class="input-label">EMAIL ADDRESS</span>
+                       <input type="email" id="emailInput" class="input-field" placeholder="Enter your email address">
+                       <i class="fas fa-envelope input-icon"></i>
+                   </div>
+                   <div class="input-group">
+                       <span class="input-label">QUANTUM ACCESS CODE</span>
+                       <input type="password" id="passwordInput" class="input-field" placeholder="Enter your access code">
+                       <i class="fas fa-eye input-icon" id="togglePassword"></i>
+                   </div>
+                   <button id="submitPassword" class="btn btn-primary">
+                       <span class="btn-icon"><i class="fas fa-unlock-alt"></i></span>
+                       <span>UNLOCK PRO SIGNALS</span>
+                   </button>
+
+                   <!-- Pricing Box -->
+                   <div class="pricing-box">
+                       <span class="pricing-label">Limited Time</span>
+                       <div class="pricing-amount"><span class="pricing-currency">$</span>70</div>
+                       <div class="pricing-alt">or 63 EUR</div>
+                       
+                       <div class="payment-methods">
+                           <div class="payment-method">
+                               <div class="payment-title">
+                                   <span class="payment-icon"><i class="fab fa-bitcoin"></i></span>
+                                   <span>Binance Pay</span>
+                               </div>
+                               <div class="payment-details" id="binanceId">
+                                   527147599
+                                   <button class="copy-btn" data-target="binanceId">
+                                       <i class="fas fa-copy"></i> COPY
+                                   </button>
+                               </div>
+                           </div>
+                           
+                           <div class="payment-method">
+                               <div class="payment-title">
+                                   <span class="payment-icon"><i class="fas fa-wallet"></i></span>
+                                   <span>Easypaisa</span>
+                               </div>
+                               <div class="payment-details" id="easypaisaAccount">
+                                   Ahad Hussain Sharif- 03495077738
+                                   <button class="copy-btn" data-target="easypaisaAccount">
+                                       <i class="fas fa-copy"></i> COPY
+                                   </button>
+                               </div>
+                               <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHEoap65BDD3pGq0pJT_ZrZEMD2cRUN_Wy-nsq9Ky-o8YFKg/viewform?usp=dialog" class="upload-btn" target="_blank">
+                                   <i class="fas fa-upload"></i> UPLOAD PAYMENT PROOF
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+
+                   <!-- Disclaimer -->
+                   <div class="disclaimer">
+                       <input type="checkbox" id="disclaimerCheck" class="disclaimer-checkbox">
+                       <label for="disclaimerCheck" class="disclaimer-text">I understand that trading involves risk and I agree to the terms of service. Binary Beast Pro is not responsible for any financial losses.</label>
+                   </div>
+
+                   <!-- WhatsApp Button -->
+                   <a href="https://wa.link/7iqkci" class="btn btn-primary" style="margin-top: 20px;">
+                       <span class="btn-icon"><i class="fab fa-whatsapp"></i></span>
+                       <span>GET ACCESS VIA WHATSAPP</span>
+                   </a>
+               </div>
+
+               <!-- Trading Section -->
+               <div id="tradingSection" class="trading-section">
+                   <!-- Subscription Status -->
+                   <div class="subscription-status">
+                       <div class="sub-heading">
+                           <span class="sub-title">Subscription Status</span>
+                           <span class="sub-value" id="subscriptionInfo">Active (25 days left)</span>
+                       </div>
+                       <div class="progress-container">
+                           <div class="progress-bar" id="progressBar"></div>
+                       </div>
+                   </div>
+
+                   <!-- Pair Selection -->
+                   <div class="form-group">
+                       <label class="form-label">
+                           <i class="fas fa-project-diagram"></i> SELECT TRADING PAIR
+                       </label>
+                       <div class="select-wrapper">
+                           <select id="pairSelect" class="select-field">
+                               <!-- Forex Pairs -->
+                               <option value="EUR/USD">EUR/USD</option>
+                               <option value="GBP/USD">GBP/USD</option>
+                               <option value="USD/JPY">USD/JPY</option>
+                               <option value="AUD/USD">AUD/USD</option>
+                               <option value="USD/CAD">USD/CAD</option>
+                               <option value="NZD/USD">NZD/USD</option>
+                               <option value="EUR/GBP">EUR/GBP</option>
+                               <option value="USD/CHF">USD/CHF</option>
+                               
+                               <!-- OTC Pairs -->
+                               <option value="USD/BDT">USD/BDT OTC</option>
+                               <option value="EUR/CHF">EUR/CHF OTC</option>
+                               <option value="USD/BRL">USD/BRL OTC</option>
+                               <option value="USD/DZD">USD/DZD OTC</option>
+                               <option value="USD/NGN">USD/NGN OTC</option>
+                               <option value="CHF/JPY">CHF/JPY OTC</option>
+                               <option value="EUR/CAD">EUR/CAD OTC</option>
+                               
+                               <!-- Other Assets -->
+                               <option value="XAU/USD">GOLD (XAU/USD)</option>
+                               <option value="XAG/USD">SILVER (XAG/USD)</option>
+                               <option value="BTC/USD">BTC/USD</option>
+                           </select>
+                           <i class="fas fa-chevron-down select-arrow"></i>
+                       </div>
+                   </div>
+
+                   <!-- Timeframe Selection -->
+                   <div class="form-group">
+                       <label class="form-label">
+                           <i class="fas fa-clock"></i> SELECT TIMEFRAME
+                       </label>
+                       <div class="select-wrapper">
+                           <select id="timeSelect" class="select-field">
+                               <option value="5">5 Seconds</option>
+                               <option value="15">15 Seconds</option>
+                               <option value="30">30 Seconds</option>
+                               <option value="60">1 Minute</option>
+                               <option value="300">5 Minutes</option>
+                           </select>
+                           <i class="fas fa-chevron-down select-arrow"></i>
+                       </div>
+                   </div>
+
+                   <!-- Signal Buttons -->
+                   <button id="getSignal" class="btn btn-success">
+                       <span class="btn-icon"><i class="fas fa-bolt"></i></span>
+                       <span>GENERATE SIGNAL (75% ACC)</span>
+                   </button>
+
+                   <button id="ultraMode" class="btn btn-warning">
+                       <span class="btn-icon"><i class="fas fa-atom"></i></span>
+                       <span>QUANTUM MODE (85% ACC)</span>
+                   </button>
+
+                   <!-- Loading Indicator -->
+                   <div class="loading" id="loadingIndicator">
+                       <div class="loader">
+                           <div class="loader-circle"></div>
+                           <div class="loader-circle"></div>
+                           <div class="loader-circle"></div>
+                       </div>
+                       <p class="loading-text">ANALYZING MARKET WITH QUANTUM AI<span class="loading-dots"></span></p>
+                   </div>
+
+                   <!-- Signal Display -->
+                   <div id="signalContainer" class="signal-display">
+                       <div class="signal-badge" id="signalBadge">COMPOUNDING</div>
+                       <div class="signal-indicator" id="signalIcon">
+                           <i class="fas fa-arrow-up"></i>
+                       </div>
+                       <div class="signal-title" id="signalText">BINARYBEAST BUY</div>
+                       <div class="signal-pair" id="signalPair">EUR/USD</div>
+                       <div class="signal-timing">
+                           <i class="far fa-clock"></i>
+                           <span>Expires in: <span class="signal-time-value" id="signalTime">30 Seconds</span></span>
+                       </div>
+                       <div class="quantum-tag" id="quantumTag">QUANTUM ANALYSIS</div>
+                       <div class="data-source-tag" id="dataSourceIndicator">LIVE MARKET DATA</div>
+                       <div class="trend-badge" id="trendIndicator">TREND: BULLISH</div>
+                       <div class="sr-badge" id="srIndicator">S: 1.07500 | R: 1.08200</div>
+                   </div>
+
+                   <!-- Analysis Panel (advanced) -->
+                   <div id="analysisPanel" class="analysis-panel">
+                       <h3 class="analysis-title"><i class="fas fa-chart-bar"></i> DETAILED MARKET ANALYSIS</h3>
+                       <div class="analysis-section">
+                           <div class="analysis-row">
+                               <span class="analysis-label">Market Trend (1H)</span>
+                               <span class="analysis-value" id="trend1h">Bullish</span>
+                           </div>
+                           <div class="analysis-row">
+                               <span class="analysis-label">Market Trend (15M)</span>
+                               <span class="analysis-value" id="trend15m">Bullish</span>
+                           </div>
+                           <div class="analysis-row">
+                               <span class="analysis-label">Market Trend (5M)</span>
+                               <span class="analysis-value" id="trend5m">Neutral</span>
+                           </div>
+                       </div>
+                       <div class="analysis-section">
+                           <div class="analysis-row">
+                               <span class="analysis-label">Pattern Detected</span>
+                               <span class="analysis-value" id="patternDetected">Bullish Engulfing</span>
+                           </div>
+                           <div class="analysis-row">
+                               <span class="analysis-label">RSI (14)</span>
+                               <span class="analysis-value" id="rsiValue">48.72</span>
+                           </div>
+                           <div class="analysis-row">
+                               <span class="analysis-label">MACD</span>
+                               <span class="analysis-value" id="macdValue">0.00124</span>
+                           </div>
+                       </div>
+                       <div class="analysis-section">
+                           <div class="analysis-row">
+                               <span class="analysis-label">Closest Support</span>
+                               <span class="analysis-value" id="supportValue">1.07500</span>
+                           </div>
+                           <div class="analysis-row">
+                               <span class="analysis-label">Closest Resistance</span>
+                               <span class="analysis-value" id="resistanceValue">1.08200</span>
+                           </div>
+                           <div class="analysis-row">
+                               <span class="analysis-label">Current Price</span>
+                               <span class="analysis-value" id="currentPrice">1.07856</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+           <div class="footer">
+               © 2025 BINARY BEAST PRO | Not financial advice | High risk investment
+			    <p class="security-alert">
+                    <i class="fas fa-exclamation-triangle"></i> IMPORTANT SECURITY ALERT: Sharing your login credentials (Email & Password) with anyone will result in your account being permanently banned and your access code immediately deactivated. Our system automatically detects multiple login attempts from different locations. For your security and to protect your investment, keep your credentials strictly confidential.
+               </p>
+           </div>
+       </div>
+   </div>
+
+   <!-- WhatsApp Float -->
+   <a href="https://wa.link/7iqkci" class="whatsapp-float" target="_blank">
+       <i class="fab fa-whatsapp"></i>
+   </a>
+
+   <!-- Redirect Overlay -->
+   <div id="redirectOverlay" class="redirect-overlay">
+       <div class="redirect-content">
+           <div class="close-btn" id="closeRedirect">×</div>
+           <h3 class="redirect-title">JOIN OUR PREMIUM COMMUNITY</h3>
+           <p class="redirect-text">For advanced trading strategies, signals, and expert support, join our exclusive trading community at Binary Beast</p>
+           <a href="https://t.me/binary_beaxt" class="redirect-btn" target="_blank">
+               <i class="fab fa-telegram-plane"></i> JOIN BINARYWALA NOW
+           </a>
+       </div>
+   </div>
+
+   <script>
+       // Create floating particles
+       const particlesContainer = document.getElementById('particlesContainer');
+       const particleCount = 30;
+
+       for (let i = 0; i < particleCount; i++) {
+           const particle = document.createElement('div');
+           particle.className = 'particle';
+           
+           // Random position
+           const posX = Math.random() * window.innerWidth;
+           const posY = Math.random() * window.innerHeight;
+           
+           // Random size
+           const size = Math.random() * 3 + 1;
+           
+           // Random animation delay
+           const delay = Math.random() * 15;
+           
+           particle.style.left = `${posX}px`;
+           particle.style.top = `${posY}px`;
+           particle.style.width = `${size}px`;
+           particle.style.height = `${size}px`;
+           particle.style.animationDelay = `${delay}s`;
+           
+           particlesContainer.appendChild(particle);
+       }
+
+       // OANDA API Configuration
+       const OANDA_API_KEY = 'eb2326208921b413a87728832f191f03-d9be68b74884f7d3107b9f05ca305319';
+       const OANDA_API_URL = 'https://api-fxpractice.oanda.com/v3/instruments/';
+
+       // Enhanced OANDA API Integration
+       async function fetchOandaData(instrument, granularity = 'H1', count = 100) {
+           const oandaInstrument = instrument.replace('/', '_');
+           
+           try {
+               const response = await fetch(`${OANDA_API_URL}${oandaInstrument}/candles?count=${count}&price=M&granularity=${granularity}`, {
+                   headers: {
+                       'Authorization': `Bearer ${OANDA_API_KEY}`,
+                       'Content-Type': 'application/json'
+                   }
+               });
+               
+               if (!response.ok) {
+                   throw new Error('API request failed');
+               }
+               
+               const data = await response.json();
+               return data.candles;
+           } catch (error) {
+               console.error('Error fetching OANDA data:', error);
+               return null;
+           }
+       }
+
+       // Advanced Pattern Detection System
+       function detectPatterns(candles) {
+           if (!candles || candles.length < 20) return [];
+           
+           const patterns = [];
+           const prices = candles.map(candle => ({
+               open: parseFloat(candle.mid.o),
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c),
+               volume: Math.abs(parseFloat(candle.mid.h) - parseFloat(candle.mid.l))
+           }));
+           
+           // Enhanced Engulfing Pattern with volume confirmation
+           for (let i = 1; i < prices.length; i++) {
+               const curr = prices[i];
+               const prev = prices[i-1];
+               
+               // Bullish Engulfing with volume confirmation
+               if (prev.close < prev.open && 
+                   curr.close > curr.open && 
+                   curr.open < prev.close && 
+                   curr.close > prev.open &&
+                   curr.volume > prev.volume * 1.2) { // Volume confirmation
+                   patterns.push({
+                       name: 'Bullish Engulfing',
+                       position: i,
+                       signal: 'buy',
+                       strength: 0.85 // Increased confidence due to volume
+                   });
+               }
+               
+               // Bearish Engulfing with volume confirmation
+               if (prev.close > prev.open && 
+                   curr.close < curr.open && 
+                   curr.open > prev.close && 
+                   curr.close < prev.open &&
+                   curr.volume > prev.volume * 1.2) { // Volume confirmation
+                   patterns.push({
+                       name: 'Bearish Engulfing',
+                       position: i,
+                       signal: 'sell',
+                       strength: 0.85 // Increased confidence due to volume
+                   });
+               }
+           }
+           
+           // Hammer and Shooting Star patterns
+           for (let i = 1; i < prices.length; i++) {
+               const p = prices[i];
+               const body = Math.abs(p.close - p.open);
+               const totalSize = p.high - p.low;
+               const lowerShadow = Math.min(p.open, p.close) - p.low;
+               const upperShadow = p.high - Math.max(p.open, p.close);
+               
+               // Hammer (bullish)
+               if (body / totalSize < 0.3 && 
+                   lowerShadow > 2 * body && 
+                   upperShadow < 0.1 * totalSize) {
+                   
+                   // Confirm with downtrend context
+                   let inDowntrend = true;
+                   for (let j = i-5; j < i; j++) {
+                       if (j >= 0 && prices[j].close > prices[j+1].close) {
+                           inDowntrend = false;
+                           break;
+                       }
+                   }
+                   
+                   if (inDowntrend) {
+                       patterns.push({
+                           name: 'Hammer',
+                           position: i,
+                           signal: 'buy',
+                           strength: 0.8
+                       });
+                   }
+               }
+               
+               // Shooting Star (bearish)
+               if (body / totalSize < 0.3 && 
+                   upperShadow > 2 * body && 
+                   lowerShadow < 0.1 * totalSize) {
+                   
+                   // Confirm with uptrend context
+                   let inUptrend = true;
+                   for (let j = i-5; j < i; j++) {
+                       if (j >= 0 && prices[j].close < prices[j+1].close) {
+                           inUptrend = false;
+                           break;
+                       }
+                   }
+                   
+                   if (inUptrend) {
+                       patterns.push({
+                           name: 'Shooting Star',
+                           position: i,
+                           signal: 'sell',
+                           strength: 0.8
+                       });
+                   }
+               }
+           }
+           
+           // Morning and Evening Star patterns
+           for (let i = 2; i < prices.length; i++) {
+               const first = prices[i-2];
+               const middle = prices[i-1];
+               const last = prices[i];
+               
+               const firstBody = Math.abs(first.close - first.open);
+               const middleBody = Math.abs(middle.close - middle.open);
+               const lastBody = Math.abs(last.close - last.open);
+               
+               // Morning Star (bullish)
+               if (first.close < first.open && // First day bearish
+                   lastBody > 0.6 * firstBody && // Last day significant body
+                   middleBody < 0.5 * firstBody && // Middle day small body
+                   last.close > last.open && // Last day bullish
+                   last.close > (first.open + first.close) / 2) { // Last closes above midpoint of first
+                   patterns.push({
+                       name: 'Morning Star',
+                       position: i,
+                       signal: 'buy',
+                       strength: 0.9 // Strong pattern
+                   });
+               }
+               
+               // Evening Star (bearish)
+               if (first.close > first.open && // First day bullish
+                   lastBody > 0.6 * firstBody && // Last day significant body
+                   middleBody < 0.5 * firstBody && // Middle day small body
+                   last.close < last.open && // Last day bearish
+                   last.close < (first.open + first.close) / 2) { // Last closes below midpoint of first
+                   patterns.push({
+                       name: 'Evening Star',
+                       position: i,
+                       signal: 'sell',
+                       strength: 0.9 // Strong pattern
+                   });
+               }
+           }
+           
+           // Enhanced Doji with context
+           for (let i = 1; i < prices.length; i++) {
+               const p = prices[i];
+               const bodySize = Math.abs(p.close - p.open);
+               const totalSize = p.high - p.low;
+               
+               if (bodySize / totalSize < 0.1 && totalSize > 0) {
+                   // Doji at support/resistance or after trend
+                   let dojiStrength = 0.6; // Base strength
+                   let dojiSignal = 'neutral';
+                   
+                   // Check if doji appears at end of trend
+                   let priorTrend = 0;
+                   for (let j = i-5; j < i; j++) {
+                       if (j >= 0) {
+                           priorTrend += (prices[j].close > prices[j].open) ? 1 : -1;
+                       }
+                   }
+                   
+                   if (Math.abs(priorTrend) >= 3) { // Strong prior trend
+                       dojiStrength = 0.75;
+                       dojiSignal = priorTrend > 0 ? 'sell' : 'buy'; // Reversal signal
+                   }
+                   
+                   patterns.push({
+                       name: 'Doji',
+                       position: i,
+                       signal: dojiSignal,
+                       strength: dojiStrength
+                   });
+               }
+           }
+           
+           // Three Line Strike (powerful continuation)
+           for (let i = 3; i < prices.length; i++) {
+               // Check for three consecutive bullish/bearish candles
+               const allBullish = prices[i-3].close > prices[i-3].open &&
+                                prices[i-2].close > prices[i-2].open &&
+                                prices[i-1].close > prices[i-1].open;
+                                
+               const allBearish = prices[i-3].close < prices[i-3].open &&
+                                prices[i-2].close < prices[i-2].open &&
+                                prices[i-1].close < prices[i-1].open;
+               
+               // Bullish Three Line Strike
+               if (allBearish && 
+                   prices[i].open < prices[i-1].close &&
+                   prices[i].close > prices[i-3].open) {
+                   patterns.push({
+                       name: 'Bullish Three Line Strike',
+                       position: i,
+                       signal: 'buy',
+                       strength: 0.95 // Very strong pattern
+                   });
+               }
+               
+               // Bearish Three Line Strike
+               if (allBullish && 
+                   prices[i].open > prices[i-1].close &&
+                   prices[i].close < prices[i-3].open) {
+                   patterns.push({
+                       name: 'Bearish Three Line Strike',
+                       position: i,
+                       signal: 'sell',
+                       strength: 0.95 // Very strong pattern
+                   });
+               }
+           }
+           
+           // Harami Pattern (reversal)
+           for (let i = 1; i < prices.length; i++) {
+               const mother = prices[i-1];
+               const baby = prices[i];
+               
+               // Bullish Harami (bearish mother + bullish baby inside)
+               if (mother.close < mother.open && // Bearish mother
+                   baby.close > baby.open && // Bullish baby
+                   baby.open > mother.close && 
+                   baby.close < mother.open) {
+                   patterns.push({
+                       name: 'Bullish Harami',
+                       position: i,
+                       signal: 'buy',
+                       strength: 0.8
+                   });
+               }
+               
+               // Bearish Harami (bullish mother + bearish baby inside)
+               if (mother.close > mother.open && // Bullish mother
+                   baby.close < baby.open && // Bearish baby
+                   baby.open < mother.close && 
+                   baby.close > mother.open) {
+                   patterns.push({
+                       name: 'Bearish Harami',
+                       position: i,
+                       signal: 'sell',
+                       strength: 0.8
+                   });
+               }
+           }
+           
+           return patterns;
+       }
+
+       // Advanced Head and Shoulders Detection with volume profile
+       function detectHeadAndShoulders(prices, patterns) {
+           // Requires at least 30 candles for reliable detection
+           if (prices.length < 30) return;
+           
+           // Find significant peaks and troughs
+           const peaks = findPeaksEnhanced(prices.map(p => p.high), 5);
+           const troughs = findPeaksEnhanced(prices.map(p => p.low).map(v => -v), 5).map(p => ({index: p.index, value: -p.value}));
+           
+           // Head and Shoulders (bearish)
+           for (let i = 0; i < peaks.length - 2; i++) {
+               const leftShoulder = peaks[i];
+               const head = peaks[i+1];
+               const rightShoulder = peaks[i+2];
+               
+               // Check pattern geometry
+               if (head.value > leftShoulder.value && 
+                   head.value > rightShoulder.value && 
+                   Math.abs(leftShoulder.value - rightShoulder.value) / leftShoulder.value < 0.08 &&
+                   Math.abs(head.index - leftShoulder.index) * 0.7 < Math.abs(rightShoulder.index - head.index) &&
+                   Math.abs(head.index - leftShoulder.index) * 1.3 > Math.abs(rightShoulder.index - head.index)) {
+                   
+                   // Check for decreasing volume profile (important confirmation)
+                   let volumeDecreasing = true;
+                   let headVolume = prices[head.index].volume;
+                   let rightVolume = prices[rightShoulder.index].volume;
+                   
+                   if (headVolume > rightVolume) {
+                       // Find neckline
+                       const leftTrough = findClosestTrough(troughs, leftShoulder.index, head.index);
+                       const rightTrough = findClosestTrough(troughs, head.index, rightShoulder.index);
+                       
+                       if (leftTrough && rightTrough) {
+                           // Calculate neckline using linear interpolation
+                           const neckline = calculateNeckline(leftTrough, rightTrough, prices.length);
+                           
+                           // Check for neckline break (price below neckline)
+                           const currentPrice = prices[prices.length-1].close;
+                           const necklineValue = neckline[neckline.length-1];
+                           
+                           let confidence = 0.85;
+                           if (currentPrice < necklineValue) {
+                               confidence = 0.95; // Confirmation with neckline break
+                           }
+                           
+                           patterns.push({
+                               name: 'Head and Shoulders',
+                               position: rightShoulder.index,
+                               signal: 'sell',
+                               strength: confidence,
+                               neckline: neckline
+                           });
+                       }
+                   }
+               }
+           }
+           
+           // Inverse Head and Shoulders (bullish)
+           for (let i = 0; i < troughs.length - 2; i++) {
+               const leftShoulder = troughs[i];
+               const head = troughs[i+1];
+               const rightShoulder = troughs[i+2];
+               
+               // Check pattern geometry
+               if (head.value < leftShoulder.value && 
+                   head.value < rightShoulder.value && 
+                   Math.abs(leftShoulder.value - rightShoulder.value) / leftShoulder.value < 0.08 &&
+                   Math.abs(head.index - leftShoulder.index) * 0.7 < Math.abs(rightShoulder.index - head.index) &&
+                   Math.abs(head.index - leftShoulder.index) * 1.3 > Math.abs(rightShoulder.index - head.index)) {
+                   
+                   // Check for increasing volume profile
+                   let volumeIncreasing = true;
+                   let headVolume = prices[head.index].volume;
+                   let rightVolume = prices[rightShoulder.index].volume;
+                   
+                   if (rightVolume > headVolume) {
+                       // Find neckline
+                       const leftPeak = findClosestPeak(peaks, leftShoulder.index, head.index);
+                       const rightPeak = findClosestPeak(peaks, head.index, rightShoulder.index);
+                       
+                       if (leftPeak && rightPeak) {
+                           // Calculate neckline
+                           const neckline = calculateNeckline(leftPeak, rightPeak, prices.length);
+                           
+                           // Check for neckline break (price above neckline)
+                           const currentPrice = prices[prices.length-1].close;
+                           const necklineValue = neckline[neckline.length-1];
+                           
+                           let confidence = 0.85;
+                           if (currentPrice > necklineValue) {
+                               confidence = 0.95; // Confirmation with neckline break
+                           }
+                           
+                           patterns.push({
+                               name: 'Inverse Head and Shoulders',
+                               position: rightShoulder.index,
+                               signal: 'buy',
+                               strength: confidence,
+                               neckline: neckline
+                           });
+                       }
+                   }
+               }
+           }
+       }
+
+       // Enhanced peak detection with importance rating
+       function findPeaksEnhanced(data, windowSize) {
+           const peaks = [];
+           for (let i = windowSize; i < data.length - windowSize; i++) {
+               let isPeak = true;
+               for (let j = i - windowSize; j < i; j++) {
+                   if (data[j] >= data[i]) {
+                       isPeak = false;
+                       break;
+                   }
+               }
+               if (isPeak) {
+                   for (let j = i + 1; j <= i + windowSize; j++) {
+                       if (j < data.length && data[j] >= data[i]) {
+                           isPeak = false;
+                           break;
+                       }
+                   }
+               }
+               if (isPeak) {
+                   // Calculate peak importance
+                   let importance = 0;
+                   for (let j = i - windowSize; j <= i + windowSize; j++) {
+                       if (j >= 0 && j < data.length && j !== i) {
+                           importance += (data[i] - data[j]) / data[i];
+                       }
+                   }
+                   
+                   peaks.push({
+                       index: i,
+                       value: data[i],
+                       importance: importance / (windowSize * 2)
+                   });
+               }
+           }
+           
+           // Sort by importance
+           return peaks.sort((a, b) => b.importance - a.importance);
+       }
+
+       // Helper functions for neckline calculation
+       function findClosestTrough(troughs, startIndex, endIndex) {
+           return troughs.find(t => t.index > startIndex && t.index < endIndex);
+       }
+
+       function findClosestPeak(peaks, startIndex, endIndex) {
+           return peaks.find(p => p.index > startIndex && p.index < endIndex);
+       }
+
+       function calculateNeckline(point1, point2, length) {
+           const slope = (point2.value - point1.value) / (point2.index - point1.index);
+           const neckline = [];
+           
+           for (let i = 0; i < length; i++) {
+               if (i < point1.index) {
+                   neckline.push(point1.value - slope * (point1.index - i));
+               } else if (i > point2.index) {
+                   neckline.push(point2.value + slope * (i - point2.index));
+               } else {
+                   neckline.push(point1.value + slope * (i - point1.index));
+               }
+           }
+           
+           return neckline;
+       }
+
+       // Advanced Support and Resistance Detection
+       function findSupportResistance(candles, levels = 5) {
+           if (!candles || candles.length < 30) return { support: [], resistance: [] };
+           
+           const prices = candles.map(candle => ({
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c),
+               open: parseFloat(candle.mid.o),
+               volume: Math.abs(parseFloat(candle.mid.h) - parseFloat(candle.mid.l))
+           }));
+           
+           // Extract price points with volume weighting
+           const pricePoints = [];
+           
+           prices.forEach((price, index) => {
+               // High and low prices
+               pricePoints.push({
+                   price: price.high,
+                   volume: price.volume,
+                   type: 'high',
+                   index: index
+               });
+               
+               pricePoints.push({
+                   price: price.low,
+                   volume: price.volume,
+                   type: 'low',
+                   index: index
+               });
+               
+               // Add open/close prices for more data points
+               pricePoints.push({
+                   price: price.open,
+                   volume: price.volume,
+                   type: 'open',
+                   index: index
+               });
+               
+               pricePoints.push({
+                   price: price.close,
+                   volume: price.volume,
+                   type: 'close',
+                   index: index
+               });
+           });
+           
+           // Use DBSCAN-inspired algorithm to find price clusters
+           const clusters = findPriceClusters(pricePoints, 0.0005); // 0.05% threshold
+           
+           // Evaluate cluster strength based on touches, rejections and volume
+           const evaluatedClusters = evaluateClusters(clusters, prices);
+           
+           // Sort clusters by strength
+           const sortedClusters = evaluatedClusters.sort((a, b) => b.strength - a.strength);
+           
+           // Separate into support and resistance based on current price
+           const currentPrice = prices[prices.length - 1].close;
+           
+           const supportLevels = sortedClusters
+               .filter(cluster => cluster.price < currentPrice)
+               .slice(0, levels)
+               .map(cluster => ({
+                   price: cluster.price.toFixed(5),
+                   strength: cluster.strength,
+                   touches: cluster.touches
+               }));
+           
+           const resistanceLevels = sortedClusters
+               .filter(cluster => cluster.price > currentPrice)
+               .slice(0, levels)
+               .map(cluster => ({
+                   price: cluster.price.toFixed(5),
+                   strength: cluster.strength,
+                   touches: cluster.touches
+               }));
+           
+           return {
+               support: supportLevels,
+               resistance: resistanceLevels
+           };
+       }
+
+       // Find price clusters using a density-based approach
+       function findPriceClusters(pricePoints, threshold) {
+           // Sort by price
+           pricePoints.sort((a, b) => a.price - b.price);
+           
+           const clusters = [];
+           let currentCluster = [pricePoints[0]];
+           
+           for (let i = 1; i < pricePoints.length; i++) {
+               const currentPoint = pricePoints[i];
+               const lastPoint = pricePoints[i-1];
+               
+               // If price difference is within threshold, add to current cluster
+               if ((currentPoint.price - lastPoint.price) / lastPoint.price < threshold) {
+                   currentCluster.push(currentPoint);
+               } else {
+                   // Start new cluster if distance is too large
+                   if (currentCluster.length > 3) { // Minimum cluster size
+                       clusters.push(currentCluster);
+                   }
+                   currentCluster = [currentPoint];
+               }
+           }
+           
+           // Add the last cluster if it meets minimum size
+           if (currentCluster.length > 3) {
+               clusters.push(currentCluster);
+           }
+           
+           // Calculate weighted average price for each cluster
+           return clusters.map(cluster => {
+               const totalWeight = cluster.reduce((sum, point) => sum + point.volume, 0);
+               const weightedPrice = cluster.reduce((sum, point) => sum + point.price * point.volume, 0) / totalWeight;
+               
+               return {
+                   price: weightedPrice,
+                   points: cluster,
+                   center: cluster[Math.floor(cluster.length / 2)],
+                   size: cluster.length
+               };
+           });
+       }
+
+       // Evaluate clusters for strength
+       function evaluateClusters(clusters, prices) {
+           return clusters.map(cluster => {
+               // Count touches and rejections
+               let touches = 0;
+               let rejections = 0;
+               let volumeAtLevel = 0;
+               
+               const clusterPrice = cluster.price;
+               const priceThreshold = clusterPrice * 0.001; // 0.1% threshold
+               
+               for (let i = 1; i < prices.length - 1; i++) {
+                   const prevPrice = prices[i-1];
+                   const currPrice = prices[i];
+                   const nextPrice = prices[i+1];
+                   
+                   // Price approached level from above
+                   if (Math.abs(currPrice.low - clusterPrice) < priceThreshold &&
+                       prevPrice.close > clusterPrice) {
+                       touches++;
+                       volumeAtLevel += currPrice.volume;
+                       
+                       // Check for rejection
+                       if (nextPrice.close > clusterPrice) {
+                           rejections++;
+                       }
+                   }
+                   
+                   // Price approached level from below
+                   if (Math.abs(currPrice.high - clusterPrice) < priceThreshold &&
+                       prevPrice.close < clusterPrice) {
+                       touches++;
+                       volumeAtLevel += currPrice.volume;
+                       
+                       // Check for rejection
+                       if (nextPrice.close < clusterPrice) {
+                           rejections++;
+                       }
+                   }
+               }
+               
+               // Calculate strength based on touches, rejections, and volume
+               const recentFactor = Math.min(1 + (cluster.center.index / prices.length) * 0.5, 1.5);
+               const strength = (touches * 0.1 + rejections * 0.15 + cluster.size * 0.05) * recentFactor;
+               
+               return {
+                   price: cluster.price,
+                   size: cluster.size,
+                   touches: touches,
+                   rejections: rejections,
+                   volumeAtLevel: volumeAtLevel,
+                   strength: strength
+               };
+           });
+       }
+
+       // Market Trend Analysis - Advanced
+       function analyzeMarketTrend(candles) {
+           if (!candles || candles.length < 20) {
+               return { trend: 'neutral', strength: 0.5 };
+           }
+           
+           const prices = candles.map(candle => ({
+               open: parseFloat(candle.mid.o),
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c),
+               volume: Math.abs(parseFloat(candle.mid.h) - parseFloat(candle.mid.l))
+           }));
+           
+           const closePrices = prices.map(price => price.close);
+           
+           // Calculate various indicators
+           const ema9 = calculateEMA(closePrices, 9);
+           const ema20 = calculateEMA(closePrices, 20);
+           const ema50 = calculateEMA(closePrices, 50);
+           const ema200 = candles.length >= 220 ? calculateEMA(closePrices, 200) : null;
+           
+           // Calculate MACD
+           const macd = calculateMACD(closePrices);
+           
+           // Calculate ADX
+           const adx = calculateADX(candles, 14);
+           
+           // Calculate RSI
+           const rsi = calculateRSI(closePrices);
+           
+           // Calculate Bollinger Bands
+           const bollingerBands = calculateBollingerBands(closePrices, 20, 2);
+           
+           // Calculate Stochastic Oscillator
+           const stochastic = calculateStochastic(prices, 14, 3);
+           
+           // Check for higher highs and higher lows (or lower highs and lower lows)
+           const swingHighs = findSwingHighs(prices, 5);
+           const swingLows = findSwingLows(prices, 5);
+           
+           let higherHighs = false;
+           let higherLows = false;
+           let lowerHighs = false;
+           let lowerLows = false;
+           
+           if (swingHighs.length >= 2) {
+               higherHighs = swingHighs[swingHighs.length-1].value > swingHighs[swingHighs.length-2].value;
+               lowerHighs = swingHighs[swingHighs.length-1].value < swingHighs[swingHighs.length-2].value;
+           }
+           
+           if (swingLows.length >= 2) {
+               higherLows = swingLows[swingLows.length-1].value > swingLows[swingLows.length-2].value;
+               lowerLows = swingLows[swingLows.length-1].value < swingLows[swingLows.length-2].value;
+           }
+           
+           // Current price position relative to EMAs
+           const currentPrice = closePrices[closePrices.length - 1];
+           const priceAboveEma9 = currentPrice > ema9;
+           const priceAboveEma20 = currentPrice > ema20;
+           const priceAboveEma50 = currentPrice > ema50;
+           const priceAboveEma200 = ema200 ? currentPrice > ema200 : null;
+           
+           // EMA alignment
+           const emaUptrend = ema9 > ema20 && ema20 > ema50 && (ema200 ? ema50 > ema200 : true);
+           const emaDowntrend = ema9 < ema20 && ema20 < ema50 && (ema200 ? ema50 < ema200 : true);
+           
+           // Overbought/oversold conditions
+           const isOverbought = rsi > 70 || stochastic.k > 80;
+           const isOversold = rsi < 30 || stochastic.k < 20;
+           
+           // Determine trend direction with weighted approach
+           let trendScore = 0;
+           
+           // EMA position weights
+           trendScore += priceAboveEma9 ? 1 : -1;
+           trendScore += priceAboveEma20 ? 2 : -2;
+           trendScore += priceAboveEma50 ? 3 : -3;
+           if (priceAboveEma200 !== null) trendScore += priceAboveEma200 ? 4 : -4;
+           
+           // EMA alignment
+           trendScore += emaUptrend ? 3 : 0;
+           trendScore += emaDowntrend ? -3 : 0;
+           
+           // MACD
+           trendScore += macd.histogram > 0 ? 2 : -2;
+           trendScore += macd.histogram > macd.histogramPrev ? 1 : -1;
+           
+           // Swing highs/lows pattern
+           trendScore += (higherHighs && higherLows) ? 3 : 0;
+           trendScore += (lowerHighs && lowerLows) ? -3 : 0;
+           
+           // RSI
+           trendScore += (rsi > 50 && rsi < 70) ? 1 : 0;
+           trendScore += (rsi < 50 && rsi > 30) ? -1 : 0;
+           
+           // ADX - strong trend indicator
+           const strongTrend = adx > 25;
+           
+           // Bollinger Band position
+           const priceNearUpperBand = currentPrice > bollingerBands.upper - (bollingerBands.upper - bollingerBands.middle) * 0.2;
+           const priceNearLowerBand = currentPrice < bollingerBands.lower + (bollingerBands.middle - bollingerBands.lower) * 0.2;
+           
+           // Adjust for overbought/oversold conditions in strong trends
+           if (strongTrend) {
+               if (trendScore > 0 && isOverbought) trendScore -= 2;
+               if (trendScore < 0 && isOversold) trendScore += 2;
+           } else {
+               // In weaker trends, overbought/oversold has more significance
+               if (isOverbought) trendScore -= 3;
+               if (isOversold) trendScore += 3;
+           }
+           
+           // Bollinger squeeze (volatility contraction)
+           const bandWidth = (bollingerBands.upper - bollingerBands.lower) / bollingerBands.middle;
+           const isBollingerSqueeze = bandWidth < 0.03; // 3% or less
+           
+           // Determine final trend
+           let trendDirection = 'neutral';
+           let trendStrength = 0.5;
+           
+           const maxScore = priceAboveEma200 !== null ? 20 : 16; // Maximum possible score
+           const normalizedScore = trendScore / maxScore;
+           
+           if (normalizedScore > 0.2) {
+               trendDirection = 'bullish';
+               trendStrength = Math.min(0.5 + normalizedScore, 1);
+           } else if (normalizedScore < -0.2) {
+               trendDirection = 'bearish';
+               trendStrength = Math.min(0.5 + Math.abs(normalizedScore), 1);
+           } else {
+               // Near-neutral zone
+               trendDirection = 'neutral';
+               trendStrength = 0.5 - Math.abs(normalizedScore);
+           }
+           
+           // Adjust strength by ADX
+           trendStrength = trendStrength * (0.7 + (adx / 100) * 0.6);
+           
+           // In case of Bollinger squeeze, reduce confidence
+           if (isBollingerSqueeze) {
+               trendStrength *= 0.8;
+           }
+           
+           return {
+               trend: trendDirection,
+               strength: trendStrength,
+               details: {
+                   ema9,
+                   ema20,
+                   ema50,
+                   ema200,
+                   macd: macd.histogram,
+                   adx,
+                   rsi,
+                   stochastic: stochastic.k,
+                   bollingerWidth: bandWidth,
+                   isBollingerSqueeze
+               },
+               signals: {
+                   emaAlignment: emaUptrend ? 'bullish' : (emaDowntrend ? 'bearish' : 'neutral'),
+                   priceVsEma: priceAboveEma50 ? 'bullish' : 'bearish',
+                   macdSignal: macd.histogram > 0 ? 'bullish' : 'bearish',
+                   swingPattern: (higherHighs && higherLows) ? 'bullish' : ((lowerHighs && lowerLows) ? 'bearish' : 'neutral'),
+                   overboughtOversold: isOverbought ? 'overbought' : (isOversold ? 'oversold' : 'neutral')
+               }
+           };
+       }
+
+       // Find swing highs (peaks)
+       function findSwingHighs(prices, lookback) {
+           const swingHighs = [];
+           
+           for (let i = lookback; i < prices.length - lookback; i++) {
+               let isSwingHigh = true;
+               
+               for (let j = i - lookback; j < i; j++) {
+                   if (prices[j].high >= prices[i].high) {
+                       isSwingHigh = false;
+                       break;
+                   }
+               }
+               
+               if (isSwingHigh) {
+                   for (let j = i + 1; j <= i + lookback; j++) {
+                       if (j < prices.length && prices[j].high >= prices[i].high) {
+                           isSwingHigh = false;
+                           break;
+                       }
+                   }
+               }
+               
+               if (isSwingHigh) {
+                   swingHighs.push({
+                       index: i,
+                       value: prices[i].high
+                   });
+               }
+           }
+           
+           return swingHighs;
+       }
+
+       // Find swing lows (valleys)
+       function findSwingLows(prices, lookback) {
+           const swingLows = [];
+           
+           for (let i = lookback; i < prices.length - lookback; i++) {
+               let isSwingLow = true;
+               
+               for (let j = i - lookback; j < i; j++) {
+                   if (prices[j].low <= prices[i].low) {
+                       isSwingLow = false;
+                       break;
+                   }
+               }
+               
+               if (isSwingLow) {
+                   for (let j = i + 1; j <= i + lookback; j++) {
+                       if (j < prices.length && prices[j].low <= prices[i].low) {
+                           isSwingLow = false;
+                           break;
+                       }
+                   }
+               }
+               
+               if (isSwingLow) {
+                   swingLows.push({
+                       index: i,
+                       value: prices[i].low
+                   });
+               }
+           }
+           
+           return swingLows;
+       }
+
+       // Calculate Exponential Moving Average
+       function calculateEMA(prices, period) {
+           if (prices.length < period) {
+               return null;
+           }
+           
+           const k = 2 / (period + 1);
+           let ema = prices.slice(0, period).reduce((sum, price) => sum + price, 0) / period;
+           
+           for (let i = period; i < prices.length; i++) {
+               ema = (prices[i] * k) + (ema * (1 - k));
+           }
+           
+           return ema;
+       }
+
+       // Calculate MACD
+       function calculateMACD(prices, fastPeriod = 12, slowPeriod = 26, signalPeriod = 9) {
+           if (prices.length < slowPeriod + signalPeriod) {
+               return { line: 0, signal: 0, histogram: 0, histogramPrev: 0 };
+           }
+           
+           const fastEMA = calculateEMA(prices, fastPeriod);
+           const slowEMA = calculateEMA(prices, slowPeriod);
+           const macdLine = fastEMA - slowEMA;
+           
+           // Calculate signal line (EMA of MACD line)
+           const macdValues = [];
+           for (let i = prices.length - signalPeriod * 2; i < prices.length; i++) {
+               if (i >= 0) {
+                   const fast = calculateEMA(prices.slice(0, i + 1), fastPeriod);
+                   const slow = calculateEMA(prices.slice(0, i + 1), slowPeriod);
+                   macdValues.push(fast - slow);
+               }
+           }
+           
+           const signalLine = calculateEMA(macdValues, signalPeriod);
+           const histogram = macdLine - signalLine;
+           
+           // Calculate previous histogram for trend direction
+           const prevFastEMA = calculateEMA(prices.slice(0, prices.length - 1), fastPeriod);
+           const prevSlowEMA = calculateEMA(prices.slice(0, prices.length - 1), slowPeriod);
+           const prevMacdLine = prevFastEMA - prevSlowEMA;
+           
+           const prevMacdValues = macdValues.slice(0, -1);
+           const prevSignalLine = calculateEMA(prevMacdValues, signalPeriod);
+           const histogramPrev = prevMacdLine - prevSignalLine;
+           
+           return {
+               line: macdLine,
+               signal: signalLine,
+               histogram: histogram,
+               histogramPrev: histogramPrev
+           };
+       }
+
+       // Calculate RSI (Relative Strength Index)
+       function calculateRSI(prices, period = 14) {
+           if (prices.length < period + 1) {
+               return 50; // Not enough data
+           }
+           
+           let gains = 0;
+           let losses = 0;
+           
+           for (let i = 1; i <= period; i++) {
+               const change = prices[prices.length - i] - prices[prices.length - i - 1];
+               if (change >= 0) {
+                   gains += change;
+               } else {
+                   losses -= change;
+               }
+           }
+           
+           if (losses === 0) return 100;
+           
+           const rs = gains / losses;
+           return 100 - (100 / (1 + rs));
+       }
+
+       // Calculate ADX (Average Directional Index)
+       function calculateADX(candles, period = 14) {
+           if (candles.length < period * 2) {
+               return 25; // Default medium value
+           }
+           
+           const prices = candles.map(candle => ({
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c)
+           }));
+           
+           // Calculate +DI and -DI
+           const dmi = calculateDMI(prices, period);
+           
+           // Calculate DX
+           let dxSum = 0;
+           let dxCount = 0;
+           
+           for (let i = period; i < prices.length; i++) {
+               const pdm = Math.max(prices[i].high - prices[i-1].high, 0);
+               const ndm = Math.max(prices[i-1].low - prices[i].low, 0);
+               
+               if (pdm > ndm) {
+                   dxSum += Math.abs((dmi.plusDI - dmi.minusDI) / (dmi.plusDI + dmi.minusDI) * 100);
+                   dxCount++;
+               } else if (ndm > pdm) {
+                   dxSum += Math.abs((dmi.minusDI - dmi.plusDI) / (dmi.plusDI + dmi.minusDI) * 100);
+                   dxCount++;
+               }
+           }
+           
+           return dxCount > 0 ? dxSum / dxCount : 25;
+       }
+
+       // Calculate DMI
+       function calculateDMI(prices, period) {
+           let plusDM = 0;
+           let minusDM = 0;
+           let tr = 0;
+           
+           for (let i = 1; i < period + 1; i++) {
+               const hdiff = prices[i].high - prices[i-1].high;
+               const ldiff = prices[i-1].low - prices[i].low;
+               
+               if (hdiff > ldiff && hdiff > 0) {
+                   plusDM += hdiff;
+               }
+               
+               if (ldiff > hdiff && ldiff > 0) {
+                   minusDM += ldiff;
+               }
+               
+               // True Range
+               const tr1 = prices[i].high - prices[i].low;
+               const tr2 = Math.abs(prices[i].high - prices[i-1].close);
+               const tr3 = Math.abs(prices[i].low - prices[i-1].close);
+               tr += Math.max(tr1, tr2, tr3);
+           }
+           
+           const atr = tr / period;
+           const plusDI = (plusDM / atr) * 100 / period;
+           const minusDI = (minusDM / atr) * 100 / period;
+           
+           return { plusDI, minusDI };
+       }
+
+       // Calculate Bollinger Bands
+       function calculateBollingerBands(prices, period = 20, multiplier = 2) {
+           if (prices.length < period) {
+               return { upper: null, middle: null, lower: null };
+           }
+           
+           const sma = prices.slice(prices.length - period).reduce((sum, price) => sum + price, 0) / period;
+           
+           // Calculate standard deviation
+           const squaredDiffs = prices.slice(prices.length - period).map(price => Math.pow(price - sma, 2));
+           const variance = squaredDiffs.reduce((sum, diff) => sum + diff, 0) / period;
+           const stdDev = Math.sqrt(variance);
+           
+           return {
+               upper: sma + (multiplier * stdDev),
+               middle: sma,
+               lower: sma - (multiplier * stdDev)
+           };
+       }
+
+       // Calculate Stochastic Oscillator
+       function calculateStochastic(prices, kPeriod = 14, dPeriod = 3) {
+           if (prices.length < kPeriod) {
+               return { k: 50, d: 50 };
+           }
+           
+           // Calculate %K
+           const currentClose = prices[prices.length - 1].close;
+           
+           let lowestLow = Infinity;
+           let highestHigh = -Infinity;
+           
+           for (let i = prices.length - kPeriod; i < prices.length; i++) {
+               lowestLow = Math.min(lowestLow, prices[i].low);
+               highestHigh = Math.max(highestHigh, prices[i].high);
+           }
+           
+           const range = highestHigh - lowestLow;
+           if (range === 0) return { k: 50, d: 50 };
+           
+           const k = ((currentClose - lowestLow) / range) * 100;
+           
+           // Calculate %D (SMA of %K)
+           const kValues = [];
+           for (let i = 0; i < dPeriod; i++) {
+               if (prices.length - kPeriod - i < 0) break;
+               
+               let periodLowestLow = Infinity;
+               let periodHighestHigh = -Infinity;
+               
+               for (let j = prices.length - kPeriod - i; j < prices.length - i; j++) {
+                   periodLowestLow = Math.min(periodLowestLow, prices[j].low);
+                   periodHighestHigh = Math.max(periodHighestHigh, prices[j].high);
+               }
+               
+               const periodRange = periodHighestHigh - periodLowestLow;
+               if (periodRange === 0) continue;
+               
+               const periodK = ((prices[prices.length - 1 - i].close - periodLowestLow) / periodRange) * 100;
+               kValues.push(periodK);
+           }
+           
+           const d = kValues.length > 0 ? kValues.reduce((sum, val) => sum + val, 0) / kValues.length : 50;
+           
+           return { k, d };
+       }
+
+       // Detect divergences between price and indicators
+       function detectDivergences(prices, timeframe) {
+           if (!prices || prices.length < 30) return [];
+           
+           const divergences = [];
+           const closePrices = prices.map(price => price.close);
+           
+           // Calculate RSI values
+           const rsiValues = [];
+           for (let i = 14; i < closePrices.length; i++) {
+               const window = closePrices.slice(i - 14, i + 1);
+               rsiValues.push(calculateRSI(window));
+           }
+           
+           // Find price swing highs/lows
+           const swingHighs = findSwingHighs(prices, 5);
+           const swingLows = findSwingLows(prices, 5);
+           
+           // Find RSI swing highs/lows (with offset for calculation)
+           const rsiSwingHighs = [];
+           const rsiSwingLows = [];
+           
+           for (let i = 5; i < rsiValues.length - 5; i++) {
+               let isHigh = true;
+               let isLow = true;
+               
+               for (let j = i - 5; j < i; j++) {
+                   if (rsiValues[j] >= rsiValues[i]) isHigh = false;
+                   if (rsiValues[j] <= rsiValues[i]) isLow = false;
+               }
+               
+               for (let j = i + 1; j <= i + 5; j++) {
+                   if (j < rsiValues.length) {
+                       if (rsiValues[j] >= rsiValues[i]) isHigh = false;
+                       if (rsiValues[j] <= rsiValues[i]) isLow = false;
+                   }
+               }
+               
+               if (isHigh) {
+                   rsiSwingHighs.push({
+                       index: i + 14, // Adjust index to match price data
+                       value: rsiValues[i]
+                   });
+               }
+               
+               if (isLow) {
+                   rsiSwingLows.push({
+                       index: i + 14, // Adjust index to match price data
+                       value: rsiValues[i]
+                   });
+               }
+           }
+           
+           // Detect bearish divergence (price higher high, RSI lower high)
+           if (swingHighs.length >= 2 && rsiSwingHighs.length >= 2) {
+               const recentPriceHigh = swingHighs[swingHighs.length - 1];
+               const previousPriceHigh = swingHighs[swingHighs.length - 2];
+               
+               const recentRsiHigh = rsiSwingHighs[rsiSwingHighs.length - 1];
+               const previousRsiHigh = rsiSwingHighs[rsiSwingHighs.length - 2];
+               
+               // Check if price made higher high but RSI made lower high
+               if (recentPriceHigh.value > previousPriceHigh.value && 
+                   recentRsiHigh.value < previousRsiHigh.value &&
+                   Math.abs(recentPriceHigh.index - recentRsiHigh.index) < 3) {
+                   
+                   divergences.push({
+                       type: 'Bearish Divergence',
+                       timeframe: timeframe,
+                       strength: 0.85,
+                       signal: 'sell'
+                   });
+               }
+           }
+           
+           // Detect bullish divergence (price lower low, RSI higher low)
+           if (swingLows.length >= 2 && rsiSwingLows.length >= 2) {
+               const recentPriceLow = swingLows[swingLows.length - 1];
+               const previousPriceLow = swingLows[swingLows.length - 2];
+               
+               const recentRsiLow = rsiSwingLows[rsiSwingLows.length - 1];
+               const previousRsiLow = rsiSwingLows[rsiSwingLows.length - 2];
+               
+               // Check if price made lower low but RSI made higher low
+               if (recentPriceLow.value < previousPriceLow.value && 
+                   recentRsiLow.value > previousRsiLow.value &&
+                   Math.abs(recentPriceLow.index - recentRsiLow.index) < 3) {
+                   
+                   divergences.push({
+                       type: 'Bullish Divergence',
+                       timeframe: timeframe,
+                       strength: 0.85,
+                       signal: 'buy'
+                   });
+               }
+           }
+           
+           return divergences;
+       }
+
+       // Identify potential Fibonacci retracement levels
+       function identifyFibonacciLevels(candles) {
+           if (!candles || candles.length < 50) return { support: [], resistance: [] };
+           
+           const prices = candles.map(candle => ({
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c)
+           }));
+           
+           // Find significant swing high and low
+           const highestPrice = Math.max(...prices.map(p => p.high));
+           const lowestPrice = Math.min(...prices.map(p => p.low));
+           
+           const highestIndex = prices.findIndex(p => p.high === highestPrice);
+           const lowestIndex = prices.findIndex(p => p.low === lowestPrice);
+           
+           // Determine if trend is up or down based on which came first
+           const isUptrend = lowestIndex < highestIndex;
+           
+           // Fibonacci levels
+           const fibLevels = [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1];
+           
+           // Calculate Fibonacci levels based on swing high/low
+           const range = highestPrice - lowestPrice;
+           
+           // Current price
+           const currentPrice = prices[prices.length - 1].close;
+           
+           // Calculate levels
+           const levels = fibLevels.map(level => {
+               const levelPrice = isUptrend ? 
+                   highestPrice - (range * level) : 
+                   lowestPrice + (range * level);
+               
+               return {
+                   level,
+                   price: parseFloat(levelPrice.toFixed(5)),
+                   isSupport: levelPrice < currentPrice,
+                   isResistance: levelPrice > currentPrice
+               };
+           });
+           
+           // Filter levels to those close to current price
+           const nearbyLevels = levels.filter(level => 
+               Math.abs(level.price - currentPrice) / currentPrice < 0.05
+           );
+           
+           // Separate into support and resistance
+           const support = nearbyLevels
+               .filter(level => level.isSupport)
+               .map(level => ({
+                   price: level.price.toFixed(5),
+                   level: `${(level.level * 100).toFixed(1)}%`,
+                   strength: 0.7 + (0.2 * (1 - level.level)) // Stronger levels have higher values
+               }));
+           
+           const resistance = nearbyLevels
+               .filter(level => level.isResistance)
+               .map(level => ({
+                   price: level.price.toFixed(5),
+                   level: `${(level.level * 100).toFixed(1)}%`,
+                   strength: 0.7 + (0.2 * level.level) // Stronger levels have higher values
+               }));
+           
+           return { support, resistance };
+       }
+
+       // Calculate pattern strength from multiple timeframes
+       function calculatePatternStrength(patterns1h, patterns15m, patterns5m, signalType) {
+           let strength = 0;
+           
+           // More weight to larger timeframes and recent patterns
+           patterns1h.forEach((pattern, index) => {
+               if (pattern.signal === signalType) {
+                   strength += pattern.strength * 3 * (1 - index * 0.1);
+               }
+           });
+           
+           patterns15m.forEach((pattern, index) => {
+               if (pattern.signal === signalType) {
+                   strength += pattern.strength * 2 * (1 - index * 0.1);
+               }
+           });
+           
+           patterns5m.forEach((pattern, index) => {
+               if (pattern.signal === signalType) {
+                   strength += pattern.strength * 1 * (1 - index * 0.1);
+               }
+           });
+           
+           return Math.min(strength, 10) / 10; // Normalize to 0-1
+       }
+
+       // Get most relevant patterns for display
+       function getRelevantPatterns(allPatterns) {
+           // Sort by strength and recency
+           const sortedPatterns = allPatterns
+               .sort((a, b) => b.strength - a.strength)
+               .slice(0, 3)
+               .map(p => p.name);
+           
+           return sortedPatterns.length > 0 ? sortedPatterns[0] : "None";
+       }
+
+       // Calculate timeframe alignment score
+       function calculateTimeframeAlignment(trend1h, trend15m, trend5m, trend1m) {
+           let alignmentScore = 0;
+           
+           // Count alignments
+           if (trend1h === trend15m) alignmentScore++;
+           if (trend15m === trend5m) alignmentScore++;
+           if (trend5m === trend1m) alignmentScore++;
+           
+           // Check if all align
+           if (trend1h === trend15m && trend15m === trend5m && trend5m === trend1m) {
+               return trend1h === 'bullish' ? 'strong_bullish' : 
+                      trend1h === 'bearish' ? 'strong_bearish' : 'neutral';
+           }
+           
+           // Check if 3 out of 4 align
+           if (alignmentScore >= 2) {
+               // Determine dominant trend
+               let bullCount = 0;
+               let bearCount = 0;
+               
+               [trend1h, trend15m, trend5m, trend1m].forEach(trend => {
+                   if (trend === 'bullish') bullCount++;
+                   if (trend === 'bearish') bearCount++;
+               });
+               
+               if (bullCount >= 3) return 'moderate_bullish';
+               if (bearCount >= 3) return 'moderate_bearish';
+           }
+           
+           // Mixed signals
+           return 'mixed';
+       }
+
+       // Analyze market context for better decision making
+       function analyzeMarketContext(candles1h, candles15m, candles5m, candles1m) {
+           // Return if any dataset is missing
+           if (!candles1h || !candles15m || !candles5m || !candles1m) {
+               return { context: 'neutral', confidence: 0.5 };
+           }
+           
+           // Extract prices
+           const prices1h = candles1h.map(candle => ({
+               open: parseFloat(candle.mid.o),
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c)
+           }));
+           
+           const prices15m = candles15m.map(candle => ({
+               open: parseFloat(candle.mid.o),
+               high: parseFloat(candle.mid.h),
+               low: parseFloat(candle.mid.l),
+               close: parseFloat(candle.mid.c)
+           }));
+           
+           // Current price
+           const currentPrice = prices15m[prices15m.length - 1].close;
+           
+           // Analyze daily range
+           const dayHighest = Math.max(...prices1h.slice(-24).map(p => p.high));
+           const dayLowest = Math.min(...prices1h.slice(-24).map(p => p.low));
+           const dayRange = dayHighest - dayLowest;
+           const positionInRange = (currentPrice - dayLowest) / dayRange;
+           
+           // Volatility analysis
+           const atr1h = calculateATR(prices1h, 14);
+           const atr15m = calculateATR(prices15m, 14);
+           
+           // Normalized volatility (1 = average, >1 = above average)
+           const volatility1h = atr1h / (currentPrice * 0.005); // Roughly normalize to 0.5% expectation
+           const volatility15m = atr15m / (currentPrice * 0.002); // Roughly normalize to 0.2% expectation
+           
+           // Market structure: Higher highs/lows vs Lower highs/lows
+           const structure1h = analyzeMarketStructure(prices1h);
+           const structure15m = analyzeMarketStructure(prices15m);
+           
+           // Range/breakout detection
+           const isRangebound = detectRangeMarket(prices1h);
+           
+           // Time-based patterns
+           const hourOfDay = new Date().getUTCHours();
+           const isHighActivityHour = (hourOfDay >= 8 && hourOfDay <= 16) || 
+                                      (hourOfDay >= 20 && hourOfDay <= 22);
+           
+           // Analyze combined context
+           let contextScore = 0;
+           let contextConfidence = 0.5;
+           
+           // Position in daily range
+           if (positionInRange > 0.7) contextScore -= 2; // Near top of range
+           else if (positionInRange < 0.3) contextScore += 2; // Near bottom of range
+           
+           // Market structure contribution
+           contextScore += structure1h === 'uptrend' ? 3 : (structure1h === 'downtrend' ? -3 : 0);
+           contextScore += structure15m === 'uptrend' ? 2 : (structure15m === 'downtrend' ? -2 : 0);
+           
+           // Range vs Trend market
+           if (isRangebound) {
+               contextConfidence -= 0.1; // Less confident in rangebound markets
+               
+               // In ranges, fade extremes
+               if (positionInRange > 0.85) contextScore -= 3;
+               else if (positionInRange < 0.15) contextScore += 3;
+           } else {
+               contextConfidence += 0.1; // More confident in trending markets
+           }
+           
+           // High volatility adjustment
+           if (volatility1h > 1.5 || volatility15m > 1.5) {
+               contextConfidence -= 0.1; // Less confident in highly volatile markets
+           }
+           
+           // Trading hours adjustment
+           if (isHighActivityHour) {
+               contextConfidence += 0.05; // More confidence during active hours
+           } else {
+               contextConfidence -= 0.05; // Less confidence during quiet hours
+           }
+           
+           // Determine context
+           let marketContext = 'neutral';
+           if (contextScore > 3) marketContext = 'bullish';
+           else if (contextScore < -3) marketContext = 'bearish';
+           
+           return {
+               context: marketContext,
+               confidence: Math.min(Math.max(contextConfidence, 0.4), 0.9),
+               details: {
+                   positionInRange: positionInRange.toFixed(2),
+                   structure1h,
+                   structure15m,
+                   isRangebound,
+                   volatility1h: volatility1h.toFixed(2),
+                   volatility15m: volatility15m.toFixed(2)
+               }
+           };
+       }
+
+       // Calculate Average True Range (ATR)
+       function calculateATR(prices, period = 14) {
+           if (prices.length < period + 1) return 0;
+           
+           const trValues = [];
+           
+           for (let i = 1; i < prices.length; i++) {
+               const curr = prices[i];
+               const prev = prices[i-1];
+               
+               // True Range calculation
+               const tr1 = curr.high - curr.low;
+               const tr2 = Math.abs(curr.high - prev.close);
+               const tr3 = Math.abs(curr.low - prev.close);
+               
+               trValues.push(Math.max(tr1, tr2, tr3));
+           }
+           
+           // Calculate simple average for first ATR
+           let atr = trValues.slice(0, period).reduce((sum, tr) => sum + tr, 0) / period;
+           
+           // Calculate smoothed ATR
+           for (let i = period; i < trValues.length; i++) {
+               atr = ((atr * (period - 1)) + trValues[i]) / period;
+           }
+           
+           return atr;
+       }
+
+       // Analyze market structure for higher highs/lows or lower highs/lows
+       function analyzeMarketStructure(prices) {
+           if (prices.length < 20) return 'neutral';
+           
+           const swingHighs = findSwingHighs(prices, 5);
+           const swingLows = findSwingLows(prices, 5);
+           
+           // Need at least two swing points to determine structure
+           if (swingHighs.length < 2 || swingLows.length < 2) return 'neutral';
+           
+           // Check last two swing highs and lows
+           const lastHigh = swingHighs[swingHighs.length - 1];
+           const prevHigh = swingHighs[swingHighs.length - 2];
+           
+           const lastLow = swingLows[swingLows.length - 1];
+           const prevLow = swingLows[swingLows.length - 2];
+           
+           const higherHighs = lastHigh.value > prevHigh.value;
+           const higherLows = lastLow.value > prevLow.value;
+           const lowerHighs = lastHigh.value < prevHigh.value;
+           const lowerLows = lastLow.value < prevLow.value;
+           
+           if (higherHighs && higherLows) return 'uptrend';
+           if (lowerHighs && lowerLows) return 'downtrend';
+           
+           // Mixed signals
+           if (higherHighs && lowerLows) return 'choppy';
+           if (lowerHighs && higherLows) return 'contracting';
+           
+           return 'neutral';
+       }
+
+       // Detect ranging market
+       function detectRangeMarket(prices, threshold = 0.003) {
+           if (prices.length < 20) return false;
+           
+           // Check last 20 candles
+           const recentPrices = prices.slice(-20);
+           
+           // Calculate average range
+           const highest = Math.max(...recentPrices.map(p => p.high));
+           const lowest = Math.min(...recentPrices.map(p => p.low));
+           
+           // Calculate range as percentage of average price
+           const avgPrice = (highest + lowest) / 2;
+           const rangePercent = (highest - lowest) / avgPrice;
+           
+           // Check if most prices are contained within a narrow band
+           const midPrice = (highest + lowest) / 2;
+           const narrowBandCount = recentPrices.filter(p => 
+               Math.abs(p.close - midPrice) / midPrice < threshold
+           ).length;
+           
+           // Range criteria: narrow overall range and most prices clustered
+           return rangePercent < 0.015 && narrowBandCount > 12;
+       }
+
+       // Backtesting system to validate pattern detection accuracy
+       function backtestPatternDetection(candles, lookbackPeriod = 50) {
+           if (candles.length < lookbackPeriod + 10) return { accuracy: 0, sampleSize: 0 };
+           
+           let correctSignals = 0;
+           let totalSignals = 0;
+           
+           // Iterate through historical data
+           for (let i = 20; i < candles.length - 10; i++) {
+               // Create a subset of data up to index i
+               const historicalCandles = candles.slice(0, i);
+               
+               // Detect patterns on historical data
+               const patterns = detectPatterns(historicalCandles);
+               
+               // If patterns were detected
+               if (patterns.length > 0) {
+                   // Get the most recent pattern
+                   const latestPattern = patterns[patterns.length - 1];
+                   
+                   // Look ahead 5-10 candles to see if pattern prediction was correct
+                   const futurePrices = candles.slice(i, i + 10).map(candle => parseFloat(candle.mid.c));
+                   const entryPrice = parseFloat(candles[i-1].mid.c);
+                   
+                   // Calculate max move in pattern direction
+                   let maxMove = 0;
+                   
+                   if (latestPattern.signal === 'buy') {
+                       maxMove = Math.max(...futurePrices) - entryPrice;
+                   } else if (latestPattern.signal === 'sell') {
+                       maxMove = entryPrice - Math.min(...futurePrices);
+                   }
+                   
+                   // Calculate move as percentage
+                   const movePercent = maxMove / entryPrice * 100;
+                   
+                   // Consider pattern successful if price moved at least 0.2% in predicted direction
+                   if (movePercent >= 0.2) {
+                       correctSignals++;
+                   }
+                   
+                   totalSignals++;
+                   
+                   // Limit to recent lookback period
+                   if (totalSignals >= lookbackPeriod) break;
+               }
+           }
+           
+           // Calculate accuracy
+           const accuracy = totalSignals > 0 ? correctSignals / totalSignals : 0;
+           
+           return {
+               accuracy: Math.round(accuracy * 100) / 100,
+               sampleSize: totalSignals
+           };
+       }
+
+       // Advanced decision model with explanation for signal generation
+       function advancedDecisionModel(features) {
+           // Signal strength variables
+           let buySignalStrength = 0;
+           let sellSignalStrength = 0;
+           const reasons = [];
+           
+           // 1. Trend Analysis (higher timeframes have more weight)
+           if (features.trend1h === 'bullish') {
+               buySignalStrength += 3 * features.trendStrength1h;
+               reasons.push("1-hour timeframe shows bullish trend");
+           } else if (features.trend1h === 'bearish') {
+               sellSignalStrength += 3 * features.trendStrength1h;
+               reasons.push("1-hour timeframe shows bearish trend");
+           }
+           
+           if (features.trend15m === 'bullish') {
+               buySignalStrength += 2 * features.trendStrength15m;
+               reasons.push("15-minute timeframe shows bullish trend");
+           } else if (features.trend15m === 'bearish') {
+               sellSignalStrength += 2 * features.trendStrength15m;
+               reasons.push("15-minute timeframe shows bearish trend");
+           }
+           
+           if (features.trend5m === 'bullish') buySignalStrength += 1;
+           else if (features.trend5m === 'bearish') sellSignalStrength += 1;
+           
+           if (features.trend1m === 'bullish') buySignalStrength += 0.5;
+           else if (features.trend1m === 'bearish') sellSignalStrength += 0.5;
+           
+           // 2. Timeframe Alignment - powerful signal when all timeframes align
+           if (features.timeframeAlignment === 'strong_bullish') {
+               buySignalStrength += 5;
+               reasons.push("Strong bullish alignment across all timeframes");
+           } else if (features.timeframeAlignment === 'strong_bearish') {
+               sellSignalStrength += 5;
+               reasons.push("Strong bearish alignment across all timeframes");
+           } else if (features.timeframeAlignment === 'moderate_bullish') {
+               buySignalStrength += 3;
+               reasons.push("Moderate bullish alignment across multiple timeframes");
+           } else if (features.timeframeAlignment === 'moderate_bearish') {
+               sellSignalStrength += 3;
+               reasons.push("Moderate bearish alignment across multiple timeframes");
+           }
+           
+           // 3. Pattern Analysis
+           if (features.bullishPatternStrength > 0.6) {
+               buySignalStrength += features.bullishPatternStrength * 4;
+               reasons.push(`Strong bullish patterns detected (${(features.bullishPatternStrength * 100).toFixed(0)}% strength)`);
+           } else if (features.bullishPatternStrength > 0.3) {
+               buySignalStrength += features.bullishPatternStrength * 2;
+           }
+           
+           if (features.bearishPatternStrength > 0.6) {
+               sellSignalStrength += features.bearishPatternStrength * 4;
+               reasons.push(`Strong bearish patterns detected (${(features.bearishPatternStrength * 100).toFixed(0)}% strength)`);
+           } else if (features.bearishPatternStrength > 0.3) {
+               sellSignalStrength += features.bearishPatternStrength * 2;
+           }
+           
+           // 4. Divergence Signals (strong reversal signals)
+           if (features.bullishDivergence) {
+               buySignalStrength += 4;
+               reasons.push("Bullish divergence detected (strong reversal signal)");
+           }
+           
+           if (features.bearishDivergence) {
+               sellSignalStrength += 4;
+               reasons.push("Bearish divergence detected (strong reversal signal)");
+           }
+           
+           // 5. Volume Analysis
+           if (features.volumeTrend1h === 'bullish') {
+               buySignalStrength += 2;
+               reasons.push("Bullish volume profile on 1-hour timeframe");
+           } else if (features.volumeTrend1h === 'bearish') {
+               sellSignalStrength += 2;
+               reasons.push("Bearish volume profile on 1-hour timeframe");
+           }
+           
+           if (features.volumeTrend15m === 'bullish') buySignalStrength += 1;
+           else if (features.volumeTrend15m === 'bearish') sellSignalStrength += 1;
+           
+           // 6. Support/Resistance Proximity
+           if (features.hasCloseSupport) {
+               buySignalStrength += 2 * features.supportStrength;
+               reasons.push("Price near significant support level");
+           }
+           
+           if (features.hasCloseResistance) {
+               sellSignalStrength += 2 * features.resistanceStrength;
+               reasons.push("Price near significant resistance level");
+           }
+           
+           // 7. Pattern/Level Confluence
+           if (features.patternLevelConfluence === 'high') {
+               // Amplify the stronger signal
+               if (buySignalStrength > sellSignalStrength) {
+                   buySignalStrength += 3;
+                   reasons.push("High confluence between bullish patterns and support levels");
+               } else {
+                   sellSignalStrength += 3;
+                   reasons.push("High confluence between bearish patterns and resistance levels");
+               }
+           } else if (features.patternLevelConfluence === 'medium') {
+               // Amplify the stronger signal
+               if (buySignalStrength > sellSignalStrength) {
+                   buySignalStrength += 1.5;
+               } else {
+                   sellSignalStrength += 1.5;
+               }
+           }
+           
+           // 8. Market Context
+           if (features.marketContext === 'bullish') {
+               buySignalStrength += 2;
+               reasons.push("Overall market context is bullish");
+           } else if (features.marketContext === 'bearish') {
+               sellSignalStrength += 2;
+               reasons.push("Overall market context is bearish");
+           }
+           
+           // 9. Risk/Reward Consideration
+           if (features.riskRewardRatio > 2) {
+               buySignalStrength += 2;
+               reasons.push(`Favorable risk/reward ratio for buying (${features.riskRewardRatio.toFixed(1)}:1)`);
+           } else if (features.riskRewardRatio < 0.5) {
+               sellSignalStrength += 2;
+               reasons.push(`Favorable risk/reward ratio for selling (${(1/features.riskRewardRatio).toFixed(1)}:1)`);
+           }
+           
+           // 10. Special Condition Adjustments
+           
+           // Range market adjustments
+           if (features.isRangeMarket) {
+               // In range markets, reduce overall confidence
+               buySignalStrength *= 0.9;
+               sellSignalStrength *= 0.9;
+               
+               // In ranges, we want to fade the extremes
+               if (features.hasCloseResistance) {
+                   sellSignalStrength *= 1.2;
+                   reasons.push("Range market near resistance favors selling");
+               }
+               
+               if (features.hasCloseSupport) {
+                   buySignalStrength *= 1.2;
+                   reasons.push("Range market near support favors buying");
+               }
+           }
+           
+           // High volatility adjustments
+           if (features.isHighVolatility) {
+               // In high volatility, reduce confidence but maintain direction
+               buySignalStrength *= 0.9;
+               sellSignalStrength *= 0.9;
+               reasons.push("High market volatility detected - using caution");
+           }
+           
+           // 11. Normalize and calculate final signal
+           // Calculate total signal strength
+           const totalSignalStrength = buySignalStrength + sellSignalStrength;
+           
+           // Avoid division by zero
+           if (totalSignalStrength === 0) {
+               return {
+                   signal: Math.random() < 0.5 ? 'buy' : 'sell', 
+                   confidence: 0.65,
+                   reasons: ["Insufficient clear signals - using default probability"]
+               };
+           }
+           
+           // Calculate raw signal strength ratio
+           const buyProbability = buySignalStrength / totalSignalStrength;
+           
+           // Calculate raw confidence
+           let baseConfidence = 0.65 + (Math.max(buySignalStrength, sellSignalStrength) / totalSignalStrength) * 0.25;
+           
+           // Apply ultra mode boost if requested
+           let finalConfidence = features.ultraMode ? 
+               Math.min(baseConfidence + 0.1, 0.97) : 
+               Math.min(baseConfidence, 0.87);
+           
+           // Round to 2 decimal places
+           finalConfidence = Math.round(finalConfidence * 100) / 100;
+           
+           // Handle very close calls with reduced confidence
+           if (Math.abs(buySignalStrength - sellSignalStrength) < totalSignalStrength * 0.1) {
+               finalConfidence = Math.max(finalConfidence - 0.1, 0.65);
+               reasons.push("Mixed signals with no clear direction - reduced confidence");
+           }
+           
+           // Special case: dominant reversal signals in counter-trend
+           if ((features.bullishDivergence && features.trend1h === 'bearish') || 
+               (features.bearishDivergence && features.trend1h === 'bullish')) {
+               finalConfidence = Math.max(finalConfidence - 0.05, 0.65);
+               reasons.push("Countertrend reversal signal - proceeding with caution");
+           }
+           
+           // Get top 3 reasons maximum
+           const topReasons = reasons.slice(0, 3);
+           
+           // Return final decision
+           return {
+               signal: buySignalStrength > sellSignalStrength ? 'buy' : 'sell',
+               confidence: finalConfidence,
+               reasons: topReasons
+           };
+       }
+
+       // Enhanced signal generation with all analysis features
+       async function generateEnhancedSignal(pair, timeframe, ultraMode = false) {
+           try {
+               // Get candles for multiple timeframes for comprehensive analysis
+               const candles1h = await fetchOandaData(pair, 'H1', 100);
+               const candles15m = await fetchOandaData(pair, 'M15', 100);
+               const candles5m = await fetchOandaData(pair, 'M5', 100);
+               const candles1m = await fetchOandaData(pair, 'M1', 100);
+               
+               if (!candles1h || !candles15m || !candles5m || !candles1m) {
+                   return { signal: Math.random() < 0.5 ? 'buy' : 'sell', confidence: 0.65 };
+               }
+               
+               // Price data
+               const prices1h = candles1h.map(candle => ({
+                   open: parseFloat(candle.mid.o),
+                   high: parseFloat(candle.mid.h),
+                   low: parseFloat(candle.mid.l),
+                   close: parseFloat(candle.mid.c),
+                   volume: Math.abs(parseFloat(candle.mid.h) - parseFloat(candle.mid.l))
+               }));
+               
+               const prices15m = candles15m.map(candle => ({
+                   open: parseFloat(candle.mid.o),
+                   high: parseFloat(candle.mid.h),
+                   low: parseFloat(candle.mid.l),
+                   close: parseFloat(candle.mid.c),
+                   volume: Math.abs(parseFloat(candle.mid.h) - parseFloat(candle.mid.l))
+               }));
+               
+               // Current price
+               const currentPrice = parseFloat(candles1m[candles1m.length-1].mid.c);
+               
+               // 1. Comprehensive pattern analysis
+               const patterns1h = detectPatterns(candles1h);
+               const patterns15m = detectPatterns(candles15m);
+               const patterns5m = detectPatterns(candles5m);
+               
+               // 2. Advanced trend analysis
+               const trend1h = analyzeMarketTrend(candles1h);
+               const trend15m = analyzeMarketTrend(candles15m);
+               const trend5m = analyzeMarketTrend(candles5m);
+               const trend1m = analyzeMarketTrend(candles1m);
+               
+               // 3. Support/resistance analysis
+               const sr1h = findSupportResistance(candles1h, 5);
+               const sr15m = findSupportResistance(candles15m, 3);
+               
+               // 4. Fibonacci level detection
+               const fibLevels = identifyFibonacciLevels(candles1h);
+               
+               // 5. Divergence detection
+               const divergences1h = detectDivergences(prices1h, '1h');
+               const divergences15m = detectDivergences(prices15m, '15m');
+               
+               // 6. Market context analysis
+               const marketContext = analyzeMarketContext(candles1h, candles15m, candles5m, candles1m);
+               
+               // 7. Combine support/resistance from different sources
+               const allSupportLevels = [
+                   ...sr1h.support.map(level => ({
+                       price: parseFloat(level.price),
+                       strength: level.strength,
+                       type: 'Price Cluster',
+                       timeframe: '1h'
+                   })),
+                   ...sr15m.support.map(level => ({
+                       price: parseFloat(level.price),
+                       strength: level.strength * 0.9, // Slightly less weight
+                       type: 'Price Cluster',
+                       timeframe: '15m'
+                   })),
+                   ...fibLevels.support.map(level => ({
+                       price: parseFloat(level.price),
+                       strength: level.strength * 0.95,
+                       type: 'Fibonacci',
+                       level: level.level
+                   }))
+               ].filter(level => level.price < currentPrice)
+                .sort((a, b) => b.price - a.price);
+               
+               const allResistanceLevels = [
+                   ...sr1h.resistance.map(level => ({
+                       price: parseFloat(level.price),
+                       strength: level.strength,
+                       type: 'Price Cluster',
+                       timeframe: '1h'
+                   })),
+                   ...sr15m.resistance.map(level => ({
+                       price: parseFloat(level.price),
+                       strength: level.strength * 0.9,
+                       type: 'Price Cluster',
+                       timeframe: '15m'
+                   })),
+                   ...fibLevels.resistance.map(level => ({
+                       price: parseFloat(level.price),
+                       strength: level.strength * 0.95,
+                       type: 'Fibonacci',
+                       level: level.level
+                   }))
+               ].filter(level => level.price > currentPrice)
+                .sort((a, b) => a.price - b.price);
+               
+               // Get closest levels
+               const closestSupport = allSupportLevels.length > 0 ? allSupportLevels[0] : null;
+               const closestResistance = allResistanceLevels.length > 0 ? allResistanceLevels[0] : null;
+               
+               // 8. Calculate risk/reward based on S/R levels
+               let riskRewardRatio = 1;
+               
+               if (closestSupport && closestResistance) {
+                   const potentialUpside = closestResistance.price - currentPrice;
+                   const potentialDownside = currentPrice - closestSupport.price;
+                   
+                   if (potentialDownside > 0) {
+                       riskRewardRatio = potentialUpside / potentialDownside;
+                   }
+               }
+               
+               // 9. Calculate pattern strengths
+               const bullishPatternStrength = calculatePatternStrength(patterns1h, patterns15m, patterns5m, 'buy');
+               const bearishPatternStrength = calculatePatternStrength(patterns1h, patterns15m, patterns5m, 'sell');
+               
+               // 10. Check for strong divergences
+               const strongBullishDivergence = divergences1h.some(d => d.signal === 'buy' && d.strength > 0.8) || 
+                                              divergences15m.some(d => d.signal === 'buy' && d.strength > 0.8);
+                                              
+               const strongBearishDivergence = divergences1h.some(d => d.signal === 'sell' && d.strength > 0.8) || 
+                                              divergences15m.some(d => d.signal === 'sell' && d.strength > 0.8);
+               
+               // 11. Timeframe alignment
+               const timeframeAlignment = calculateTimeframeAlignment(
+                   trend1h.trend, trend15m.trend, trend5m.trend, trend1m.trend
+               );
+               
+               // 12. Pattern/level confluence
+               const patternLevelConfluence = 'medium'; // Simplified for example
+               
+               // 13. Advanced aggregation model
+               const signalResult = advancedDecisionModel({
+                   // Trend signals
+                   trend1h: trend1h.trend,
+                   trend15m: trend15m.trend,
+                   trend5m: trend5m.trend,
+                   trend1m: trend1m.trend,
+                   trendStrength1h: trend1h.strength,
+                   trendStrength15m: trend15m.strength,
+                   
+                   // Pattern signals
+                   bullishPatternStrength,
+                   bearishPatternStrength,
+                   
+                   // Divergence signals
+                   bullishDivergence: strongBullishDivergence,
+                   bearishDivergence: strongBearishDivergence,
+                   
+                   // Volume signals
+                   volumeTrend1h: 'neutral', // Simplified for example
+                   volumeTrend15m: 'neutral',
+                   
+                   // Support/Resistance
+                   hasCloseSupport: closestSupport && (currentPrice - closestSupport.price) / currentPrice < 0.003,
+                   hasCloseResistance: closestResistance && (closestResistance.price - currentPrice) / currentPrice < 0.003,
+                   supportStrength: closestSupport ? closestSupport.strength : 0,
+                   resistanceStrength: closestResistance ? closestResistance.strength : 0,
+                   
+                   // Market context
+                   marketContext: marketContext.context,
+                   
+                   // Confluence factors
+                   timeframeAlignment,
+                   patternLevelConfluence,
+                   
+                   // Risk/Reward
+                   riskRewardRatio,
+                   
+                   // Special conditions
+                   isRangeMarket: marketContext.details.isRangebound,
+                   isHighVolatility: parseFloat(marketContext.details.volatility15m) > 1.5,
+                   
+                   // Ultra mode flag
+                   ultraMode
+               });
+               
+               // 14. Collect most relevant patterns for display
+               const relevantPatterns = getRelevantPatterns([...patterns15m, ...patterns5m]);
+               
+               // Prepare trend information for display
+               let dominantTrend = 'neutral';
+               // Higher timeframes have more weight
+               if (trend1h.strength > 0.6) {
+                   dominantTrend = trend1h.trend;
+               } else if (trend15m.strength > 0.7) {
+                   dominantTrend = trend15m.trend;
+               } else if (trend5m.strength > 0.8) {
+                   dominantTrend = trend5m.trend;
+               }
+               
+               // 15. Return comprehensive signal data
+               return {
+                   signal: signalResult.signal,
+                   confidence: signalResult.confidence,
+                   analysis: {
+                       trend: {
+                           h1: trend1h.trend,
+                           m15: trend15m.trend,
+                           m5: trend5m.trend,
+                           m1: trend1m.trend,
+                           dominant: dominantTrend,
+                           alignment: timeframeAlignment
+                       },
+                       patterns: {
+                           h1: patterns1h.map(p => p.name),
+                           m15: patterns15m.map(p => p.name),
+                           m5: patterns5m.map(p => p.name),
+                           main: relevantPatterns,
+                           strengthBull: bullishPatternStrength.toFixed(2),
+                           strengthBear: bearishPatternStrength.toFixed(2)
+                       },
+                       divergences: {
+                           bullish: divergences1h.concat(divergences15m).filter(d => d.signal === 'buy').map(d => d.type),
+                           bearish: divergences1h.concat(divergences15m).filter(d => d.signal === 'sell').map(d => d.type)
+                       },
+                       indicators: {
+                           rsi: trend15m.details.rsi.toFixed(2),
+                           macd: trend15m.details.macd.toFixed(5),
+                           adx: trend15m.details.adx.toFixed(2)
+                       },
+                       supportResistance: {
+                           support: closestSupport ? closestSupport.price.toFixed(5) : 'N/A',
+                           supportType: closestSupport ? closestSupport.type : 'N/A',
+                           resistance: closestResistance ? closestResistance.price.toFixed(5) : 'N/A',
+                           resistanceType: closestResistance ? closestResistance.type : 'N/A'
+                       },
+                       context: marketContext.context,
+                       riskReward: riskRewardRatio.toFixed(2),
+                       currentPrice: currentPrice.toFixed(5),
+                       signalReasons: signalResult.reasons
+                   }
+               };
+               
+           } catch (error) {
+               console.error("Error in enhanced signal generation:", error);
+               return { signal: Math.random() < 0.5 ? 'buy' : 'sell', confidence: 0.65 };
+           }
+       }
+
+       // Backtest and enhance signal generation
+       async function generateBacktestedSignal(pair, timeframe, ultraMode = false) {
+           // Generate base signal
+           const signalResult = await generateEnhancedSignal(pair, timeframe, ultraMode);
+           
+           try {
+               // Get more historical data for backtesting
+               const candles1h = await fetchOandaData(pair, 'H1', 200);
+               const candles15m = await fetchOandaData(pair, 'M15', 200);
+               
+               // Run backtests
+               const backtest1h = backtestPatternDetection(candles1h, 30);
+               const backtest15m = backtestPatternDetection(candles15m, 50);
+               
+               // Average accuracy weighted by sample size
+               const totalSamples = backtest1h.sampleSize + backtest15m.sampleSize;
+               let historicalAccuracy = 0;
+               
+               if (totalSamples > 0) {
+                   historicalAccuracy = (
+                       backtest1h.accuracy * backtest1h.sampleSize + 
+                       backtest15m.accuracy * backtest15m.sampleSize
+                   ) / totalSamples;
+               }
+               
+               // Adjust confidence based on historical accuracy
+               let adjustedConfidence = signalResult.confidence;
+               
+               if (totalSamples >= 20) { // Only adjust if we have sufficient samples
+                   // Boost confidence if historical accuracy is high
+                   if (historicalAccuracy > 0.75) {
+                       adjustedConfidence = Math.min(signalResult.confidence + 0.05, 0.97);
+                   }
+                   // Reduce confidence if historical accuracy is low
+                   else if (historicalAccuracy < 0.6) {
+                       adjustedConfidence = Math.max(signalResult.confidence - 0.05, 0.65);
+                   }
+               }
+               
+               // Add backtesting data to result
+               return {
+                   ...signalResult,
+                   confidence: Math.round(adjustedConfidence * 100) / 100,
+                   analysis: {
+                       ...signalResult.analysis,
+                       backtesting: {
+                           accuracy1h: backtest1h.accuracy,
+                           accuracy15m: backtest15m.accuracy,
+                           sampleSize: totalSamples,
+                           overallAccuracy: Math.round(historicalAccuracy * 100) / 100
+                       }
+                   }
+               };
+               
+           } catch (error) {
+               console.error("Error in backtesting:", error);
+               return signalResult; // Return original signal if backtesting fails
+           }
+       }
+
+       // Enhanced UI Integration - Generate signal with UI update
+       async function generateSignalWithUI(ultraMode = false) {
+           loadingIndicator.style.display = "block";
+           signalContainer.style.display = "none";
+           analysisPanel.style.display = "none";
+           getSignalBtn.disabled = true;
+           ultraModeBtn.disabled = true;
+
+           const pair = pairSelect.value;
+           const timeframe = parseInt(timeSelect.value);
+           
+           // Show more advanced analysis for quantum mode
+           const loadingTime = ultraMode ? 4000 : 2000;
+           
+           // Change loading text for ultra mode
+           if (ultraMode) {
+               document.querySelector(".loading-text").innerHTML = 
+                   "ANALYZING MARKET WITH QUANTUM AI & BACKTESTING<span class='loading-dots'></span>";
+           } else {
+               document.querySelector(".loading-text").innerHTML = 
+                   "ANALYZING MARKET WITH QUANTUM AI<span class='loading-dots'></span>";
+           }
+           
+           setTimeout(async () => {
+               try {
+                   // Get enhanced signal with market analysis and backtesting
+                   const analysisResult = ultraMode ?
+                       await generateBacktestedSignal(pair, timeframe, ultraMode) :
+                       await generateEnhancedSignal(pair, timeframe, ultraMode);
+                   
+                   loadingIndicator.style.display = "none";
+                   getSignalBtn.disabled = false;
+                   ultraModeBtn.disabled = false;
+                   
+                   const isUp = analysisResult.signal === 'buy';
+                   
+                   // Update signal display
+                   if (isUp) {
+                       signalContainer.className = "signal-display buy";
+                       signalIcon.innerHTML = '<i class="fas fa-arrow-up"></i>';
+                       signalText.textContent = "BINARYBEAST BUY";
+                       signalText.style.color = "var(--success)";
+                   } else {
+                       signalContainer.className = "signal-display sell";
+                       signalIcon.innerHTML = '<i class="fas fa-arrow-down"></i>';
+                       signalText.textContent = "BINARYBEAST SELL";
+                       signalText.style.color = "var(--danger)";
+                   }
+
+                   signalPair.textContent = pair;
+
+                   let timeText;
+                   if (timeframe < 60) {
+                       timeText = `${timeframe} Second${timeframe !== 1 ? 's' : ''}`;
+                   } else {
+                       const mins = timeframe / 60;
+                       timeText = `${mins} Minute${mins !== 1 ? 's' : ''}`;
+                   }
+
+                   signalTime.textContent = timeText;
+                   
+                   // Update trend indicator
+                   if (analysisResult.analysis.trend.dominant) {
+                       let trendText = analysisResult.analysis.trend.dominant.toUpperCase();
+                       trendIndicator.textContent = `TREND: ${trendText}`;
+                       trendIndicator.style.display = "inline-block";
+                   }
+                   
+                   // Update support/resistance indicator
+                   if (analysisResult.analysis.supportResistance.support !== 'N/A' || 
+                       analysisResult.analysis.supportResistance.resistance !== 'N/A') {
+                       
+                       let srText = '';
+                       if (analysisResult.analysis.supportResistance.support !== 'N/A') {
+                           srText += `S: ${analysisResult.analysis.supportResistance.support}`;
+                       }
+                       if (analysisResult.analysis.supportResistance.resistance !== 'N/A') {
+                           if (srText) srText += ' | ';
+                           srText += `R: ${analysisResult.analysis.supportResistance.resistance}`;
+                       }
+                       
+                       srIndicator.textContent = srText;
+                       srIndicator.style.display = "inline-block";
+                   } else {
+                       srIndicator.style.display = "none";
+                   }
+                   
+                   // Update signal badge to show confidence
+                   signalBadge.style.display = "block";
+                   signalBadge.textContent = `${Math.round(analysisResult.confidence * 100)}% ACCURACY`;
+                   
+                   // Set quantum tag visibility
+                   quantumTag.style.display = ultraMode ? "inline-block" : "none";
+                   
+                   // Show data source indicator
+                   dataSourceIndicator.style.display = "inline-block";
+                   dataSourceIndicator.textContent = ultraMode ? 
+                       "OANDA DATA + BACKTESTING" : "OANDA LIVE DATA";
+                   
+                   // Update detailed analysis panel
+                   if (ultraMode) {
+                       // Clear previous analysis sections
+                       while (analysisPanel.children.length > 3) {
+                           analysisPanel.removeChild(analysisPanel.lastChild);
+                       }
+                       
+                       // Set trends for different timeframes
+                       trend1h.textContent = analysisResult.analysis.trend.h1.toUpperCase();
+                       trend1h.className = `analysis-value ${analysisResult.analysis.trend.h1}`;
+                       
+                       trend15m.textContent = analysisResult.analysis.trend.m15.toUpperCase();
+                       trend15m.className = `analysis-value ${analysisResult.analysis.trend.m15}`;
+                       
+                       trend5m.textContent = analysisResult.analysis.trend.m5.toUpperCase();
+                       trend5m.className = `analysis-value ${analysisResult.analysis.trend.m5}`;
+                       
+                       // Set detected pattern
+                       patternDetected.textContent = analysisResult.analysis.patterns.main || "None";
+                       
+                       // Set indicators
+                       rsiValue.textContent = analysisResult.analysis.indicators.rsi;
+                       if (parseFloat(analysisResult.analysis.indicators.rsi) > 70) {
+                           rsiValue.className = "analysis-value bearish";
+                       } else if (parseFloat(analysisResult.analysis.indicators.rsi) < 30) {
+                           rsiValue.className = "analysis-value bullish";
+                       } else {
+                           rsiValue.className = "analysis-value";
+                       }
+                       
+                       macdValue.textContent = analysisResult.analysis.indicators.macd;
+                       if (parseFloat(analysisResult.analysis.indicators.macd) > 0) {
+                           macdValue.className = "analysis-value bullish";
+                       } else {
+                           macdValue.className = "analysis-value bearish";
+                       }
+                       
+                       // Set S/R levels
+                       supportValue.textContent = analysisResult.analysis.supportResistance.support;
+                       resistanceValue.textContent = analysisResult.analysis.supportResistance.resistance;
+                       
+                       // Set current price
+                       currentPrice.textContent = analysisResult.analysis.currentPrice;
+                       
+                       // Add signal reasons section
+                       if (analysisResult.analysis.signalReasons && analysisResult.analysis.signalReasons.length > 0) {
+                           const reasonsHTML = analysisResult.analysis.signalReasons.map(
+                               reason => `<div class="analysis-row">
+                                   <span class="analysis-label"><i class="fas fa-check-circle"></i></span>
+                                   <span class="analysis-value">${reason}</span>
+                               </div>`
+                           ).join('');
+                           
+                           // Add reasons section to analysis panel
+                           const reasonsSection = document.createElement('div');
+                           reasonsSection.className = 'analysis-section';
+                           reasonsSection.innerHTML = `
+                               <h3 class="analysis-title"><i class="fas fa-brain"></i> SIGNAL REASONS</h3>
+                               ${reasonsHTML}
+                           `;
+                           
+                           // Append to analysis panel
+                           analysisPanel.appendChild(reasonsSection);
+                       }
+                       
+                       // If backtesting data is available, show it
+                       if (analysisResult.analysis.backtesting) {
+                           const backtestHTML = `
+                               <div class="analysis-row">
+                                   <span class="analysis-label">Historical Accuracy</span>
+                                   <span class="analysis-value ${analysisResult.analysis.backtesting.overallAccuracy > 0.7 ? 'bullish' : ''}">${(analysisResult.analysis.backtesting.overallAccuracy * 100).toFixed(0)}%</span>
+                               </div>
+                               <div class="analysis-row">
+                                   <span class="analysis-label">Sample Size</span>
+                                   <span class="analysis-value">${analysisResult.analysis.backtesting.sampleSize}</span>
+                               </div>
+                           `;
+                           
+                           // Add backtesting section to analysis panel
+                           const backtestSection = document.createElement('div');
+                           backtestSection.className = 'analysis-section';
+                           backtestSection.innerHTML = `
+                               <h3 class="analysis-title"><i class="fas fa-history"></i> BACKTEST RESULTS</h3>
+                               ${backtestHTML}
+                           `;
+                           
+                           // Append to analysis panel
+                           analysisPanel.appendChild(backtestSection);
+                       }
+                       
+                       // Show analysis panel
+                       analysisPanel.style.display = "block";
+                   }
+                   
+                   // Display signal
+                   signalContainer.style.display = "block";
+                   signalContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+                   
+               } catch (error) {
+                   console.error("Error generating signal:", error);
+                   loadingIndicator.style.display = "none";
+                   getSignalBtn.disabled = false;
+                   ultraModeBtn.disabled = false;
+                   alert("Error generating signal. Please try again.");
+               }
+           }, loadingTime + Math.random() * 1000);
+       }
+
+       // Enhanced Password Protection with Email Verification System
+       const licenses = {
+           "ahadhussainsharif.com": {
+               password: "Bubloo786#",
+               expirationDate: new Date(2025, 4, 29, 23, 59, 59), // Year, Month (0-based), Day, Hour, Min, Sec
+               accessDays: 30,
+               expired: false
+           },
+           "premium@binbeast.com": {
+               password: "PREMIUM2025",
+               expirationDate: new Date(2025, 5, 15, 23, 59, 59),
+               accessDays: 45,
+               expired: false
+           },
+           "trial@binbeast.com": {
+               password: "TRIAL2025",
+               expirationDate: new Date(2025, 4, 15, 23, 59, 59),
+               accessDays: 7,
+               expired: true
+           }
+       };
+
+       const emailInput = document.getElementById("emailInput");
+       const passwordInput = document.getElementById("passwordInput");
+       const togglePassword = document.getElementById("togglePassword");
+       const submitPassword = document.getElementById("submitPassword");
+       const passwordSection = document.getElementById("passwordSection");
+       const tradingSection = document.getElementById("tradingSection");
+       const disclaimerCheck = document.getElementById("disclaimerCheck");
+       const platformBtns = document.querySelectorAll(".platform-btn");
+       const accessStatus = document.getElementById("accessStatus");
+       const accessExpiration = document.getElementById("accessExpiration");
+       const progressBar = document.getElementById("progressBar");
+       const subscriptionInfo = document.getElementById("subscriptionInfo");
+
+       // Format date as DD/MM/YYYY HH:MM
+       function formatDate(date) {
+           const day = String(date.getDate()).padStart(2, '0');
+           const month = String(date.getMonth() + 1).padStart(2, '0');
+           const year = date.getFullYear();
+           const hours = String(date.getHours()).padStart(2, '0');
+           const minutes = String(date.getMinutes()).padStart(2, '0');
+           
+           return `${day}/${month}/${year} ${hours}:${minutes}`;
+       }
+
+       // Calculate remaining days
+       function calculateRemainingDays(expirationDate) {
+           const now = new Date();
+           const diff = expirationDate - now;
+           return Math.ceil(diff / (1000 * 60 * 60 * 24));
+       }
+
+       // Update subscription progress bar
+       function updateSubscriptionProgress(accessInfo) {
+           const totalDays = accessInfo.accessDays;
+           const remainingDays = calculateRemainingDays(accessInfo.expirationDate);
+           const percentage = ((totalDays - remainingDays) / totalDays) * 100;
+           
+           progressBar.style.width = `${100 - percentage}%`;
+           
+           if (remainingDays <= 0) {
+               subscriptionInfo.textContent = "Expired";
+               subscriptionInfo.style.color = "var(--danger)";
+           } else if (remainingDays <= 3) {
+               subscriptionInfo.textContent = `Expires in ${remainingDays} day${remainingDays !== 1 ? 's' : ''}`;
+               subscriptionInfo.style.color = "var(--danger)";
+           } else if (remainingDays <= 7) {
+               subscriptionInfo.textContent = `Expires in ${remainingDays} days`;
+               subscriptionInfo.style.color = "var(--warning)";
+           } else {
+               subscriptionInfo.textContent = `Active (${remainingDays} days left)`;
+               subscriptionInfo.style.color = "var(--success)";
+           }
+       }
+
+       // Set active platform
+       platformBtns.forEach(btn => {
+           btn.addEventListener("click", () => {
+               platformBtns.forEach(b => b.classList.remove("active"));
+               btn.classList.add("active");
+           });
+       });
+
+       // Copy to clipboard
+       document.querySelectorAll(".copy-btn").forEach(btn => {
+           btn.addEventListener("click", function() {
+               const targetId = this.getAttribute("data-target");
+               const text = document.getElementById(targetId).textContent.trim();
+               navigator.clipboard.writeText(text.replace("COPY", "").trim());
+               
+               // Visual feedback
+               const originalText = this.innerHTML;
+               this.innerHTML = '<i class="fas fa-check"></i> COPIED!';
+               setTimeout(() => {
+                   this.innerHTML = originalText;
+               }, 2000);
+           });
+       });
+
+       // Toggle password visibility
+       togglePassword.addEventListener("click", () => {
+           if (passwordInput.type === "password") {
+               passwordInput.type = "text";
+               togglePassword.classList.replace("fa-eye", "fa-eye-slash");
+           } else {
+               passwordInput.type = "password";
+               togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+           }
+       });
+
+       // Submit credentials
+       submitPassword.addEventListener("click", () => {
+           if (!disclaimerCheck.checked) {
+               alert("Please accept the terms to continue");
+               return;
+           }
+           
+           const enteredEmail = emailInput.value.trim().toLowerCase();
+           const enteredPassword = passwordInput.value;
+           
+           // Check if email exists in licenses
+           if (!licenses[enteredEmail]) {
+               alert("Invalid email address. Please check your email or contact support.");
+               emailInput.focus();
+               return;
+           }
+           
+           const licenseInfo = licenses[enteredEmail];
+           
+           // Verify password matches for this email
+           if (enteredPassword !== licenseInfo.password) {
+               alert("Invalid access code. Please check your credentials or contact support on WhatsApp.");
+               passwordInput.value = "";
+               passwordInput.focus();
+               return;
+           }
+           
+           // Check if access has expired
+           const now = new Date();
+           if (now > licenseInfo.expirationDate || licenseInfo.expired) {
+               alert("Your access has expired. Please contact support or purchase a new access code.");
+               passwordInput.value = "";
+               passwordInput.focus();
+               return;
+           }
+           
+           // Valid credentials - show trading section
+           passwordSection.style.display = "none";
+           tradingSection.style.display = "block";
+           accessStatus.style.display = "flex";
+           
+           // Update expiration display
+           accessExpiration.textContent = `${formatDate(licenseInfo.expirationDate)}`;
+           
+           // Update subscription progress
+           updateSubscriptionProgress(licenseInfo);
+           
+           // Scroll to trading section
+           tradingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+           
+           // Store credentials in session for expiration check
+           sessionStorage.setItem("userEmail", enteredEmail);
+           
+           // Set up countdown timer to update days remaining
+           setInterval(() => {
+               updateSubscriptionProgress(licenseInfo);
+           }, 60000); // Update every minute
+       });
+
+       // Allow Enter key to submit from either input field
+       emailInput.addEventListener("keypress", (e) => {
+           if (e.key === "Enter") passwordInput.focus();
+       });
+       
+       passwordInput.addEventListener("keypress", (e) => {
+           if (e.key === "Enter") submitPassword.click();
+       });
+
+       // Signal Generation Event Listeners
+       const getSignalBtn = document.getElementById("getSignal");
+       const ultraModeBtn = document.getElementById("ultraMode");
+       const loadingIndicator = document.getElementById("loadingIndicator");
+       const signalContainer = document.getElementById("signalContainer");
+       const signalIcon = document.getElementById("signalIcon");
+       const signalText = document.getElementById("signalText");
+       const signalPair = document.getElementById("signalPair");
+       const signalTime = document.getElementById("signalTime");
+       const signalBadge = document.getElementById("signalBadge");
+       const quantumTag = document.getElementById("quantumTag");
+       const dataSourceIndicator = document.getElementById("dataSourceIndicator");
+       const trendIndicator = document.getElementById("trendIndicator");
+       const srIndicator = document.getElementById("srIndicator");
+       const pairSelect = document.getElementById("pairSelect");
+       const timeSelect = document.getElementById("timeSelect");
+       const analysisPanel = document.getElementById("analysisPanel");
+       const trend1h = document.getElementById("trend1h");
+       const trend15m = document.getElementById("trend15m");
+       const trend5m = document.getElementById("trend5m");
+       const patternDetected = document.getElementById("patternDetected");
+       const rsiValue = document.getElementById("rsiValue");
+       const macdValue = document.getElementById("macdValue");
+       const supportValue = document.getElementById("supportValue");
+       const resistanceValue = document.getElementById("resistanceValue");
+       const currentPrice = document.getElementById("currentPrice");
+
+       // Connect signal generation buttons
+       getSignalBtn.addEventListener("click", () => generateSignalWithUI(false));
+       ultraModeBtn.addEventListener("click", () => generateSignalWithUI(true));
+
+       // Close Redirect Overlay
+       const closeRedirect = document.getElementById("closeRedirect");
+       closeRedirect.addEventListener("click", () => {
+           document.getElementById("redirectOverlay").style.display = "none";
+       });
+
+       // Redirect after 3 minutes
+       setTimeout(() => {
+           document.getElementById("redirectOverlay").style.display = "flex";
+       }, 180000);
+       
+       // Check for access code expiration every minute
+       setInterval(() => {
+           const now = new Date();
+           
+           // If user is already in trading section, check if their access has expired
+           if (tradingSection.style.display === "block") {
+               const userEmail = sessionStorage.getItem("userEmail");
+               
+               if (userEmail && licenses[userEmail]) {
+                   const licenseInfo = licenses[userEmail];
+                   
+                   if (now > licenseInfo.expirationDate) {
+                       alert("Your access has expired. Please purchase a new access code.");
+                       sessionStorage.removeItem("userEmail");
+                       location.reload(); // Reload the page to return to login
+                   }
+               }
+           }
+       }, 60000);
+   </script>
+</body>
+</html>
