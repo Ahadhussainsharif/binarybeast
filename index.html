@@ -1437,7 +1437,7 @@
 
                    <!-- Disclaimer -->
                    <div class="disclaimer">
-                       <input type="checkbox" id="disclaimerCheck" class="disclaimer-checkbox">
+                       <input type="checkbox" id="disclaimerCheck" class="disclaimer-checkbox" checked disabled>
                        <label for="disclaimerCheck" class="disclaimer-text">I understand that trading involves risk and I agree to the terms of service. Binary Beast Pro is not responsible for any financial losses.</label>
                    </div>
 
@@ -1622,7 +1622,7 @@
            <h3 class="redirect-title">JOIN OUR PREMIUM COMMUNITY</h3>
            <p class="redirect-text">For advanced trading strategies, signals, and expert support, join our exclusive trading community at Binary Beast</p>
            <a href="https://t.me/binary_beaxt" class="redirect-btn" target="_blank">
-               <i class="fab fa-telegram-plane"></i> JOIN BINARYBEAST NOW
+               <i class="fab fa-telegram-plane"></i> JOIN BINARYWALA NOW
            </a>
        </div>
    </div>
@@ -3948,7 +3948,7 @@
 
        // Enhanced Password Protection with Email Verification System
        const licenses = {
-           "ahadhussainsharif@gmail.com": {
+           "ahadhussainsharif.com": {
                password: "Bubloo786#",
                expirationDate: new Date(2025, 4, 29, 23, 59, 59), // Year, Month (0-based), Day, Hour, Min, Sec
                accessDays: 30,
@@ -4059,10 +4059,10 @@
 
        // Submit credentials
        submitPassword.addEventListener("click", () => {
-           if (!disclaimerCheck.checked) {
-               alert("Please accept the terms to continue");
-               return;
-           }
+           //if (!disclaimerCheck.checked) {
+               //alert("Please accept the terms to continue");
+               //return;
+          //}
            
            const enteredEmail = emailInput.value.trim().toLowerCase();
            const enteredPassword = passwordInput.value;
